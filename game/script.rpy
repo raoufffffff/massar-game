@@ -16,6 +16,9 @@ label start:
 
 label city_loop:
     scene black
+    # the end-of-day report (Ana's love, rent...) is shown once, as soon as the player is back at the map or in a room
+    if story.pending:
+        call screen day_report(story.pending)
     call screen city_map
     if _return == "__back__":
         # Closed the map without travelling: no time passes
@@ -30,6 +33,8 @@ label city_loop:
     jump place_loop
 
 label place_loop:
+    if story.pending:
+        call screen day_report(story.pending)
     # Opening hours: when time passes and this place (or room) closes, the player is sent out with a message
     if not mc.place_open(location, day_part):
         $ closed_note = mc.closed_text(location, None, day_part)

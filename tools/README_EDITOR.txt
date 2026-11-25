@@ -128,3 +128,21 @@ In the game: a closed place shows the lock picture on the map and the message po
 shows the message; if time passes while the player is inside and it closes, he is sent out (to the map, or to the first open room)
 with the message. Ana is never in a closed room: if her schedule puts her there at a closed time the Overview shows a note and she
 is simply absent. Data: game/data/places.json (save with Ctrl+S).
+
+
+STORY RULES: ANA'S LOVE, RENT AND THE END OF EACH DAY  (version 1)
+-------------------------------------------------------------------
+All numbers live in game/data/story.json (plain JSON; the editor has no tab for it yet).
+  start            love and Ana's followers when the game begins (love 2, followers 0)
+  gates            love values that only a story quest can cross (5, 15, 25). Until a gate is crossed love stops one point before it.
+  version_cap      love never passes this (30); the first time it is reached the "end of this version" message is shown
+  daily            rules checked at the end of every day
+                     {"event": "talk_game", "love": 1, "per_day": 1}                   +1 if the player did it today
+                     {"missing": "dishes_done", "love": -1, "if": {"ana_followers_lt": 500}}   -1 if he did NOT do it
+                   conditions in "if": love_lt, love_gte, ana_followers_lt, ana_followers_gte, gate_crossed, gate_not_crossed
+  weekly / rent    weekday 0 = Monday, first_day (8 = the second Monday, so there is a week of grace), amount, missing_love (-5)
+  show_numbers     true = the report shows the numbers; false = only short sentences (hints)
+  dev_tools        true = press F9 in the game for the developer menu (log actions, pay rent, cross a gate, finish the day)
+Test the rules WITHOUT starting the game:   python tools/masar_sim.py --days 20 --quiet --cross 5@2 --cross 15@8
+Checks of the engine:                       python tools/test_story.py
+Not wired yet: the talk game and the dishes as real actions in the rooms, the story quests that cross the gates.

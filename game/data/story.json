@@ -1,0 +1,27 @@
+{
+  "show_numbers": true,
+  "dev_tools": true,
+  "version_cap": 30,
+  "end_message": "You have reached the end of the current version of Masar. Ana's love cannot rise any higher and no new poses will open for now. Thank you for playing!",
+  "start": {"love": 2, "ana_followers": 0},
+  "gates": [5, 15, 25],
+  "daily": [
+    {"id": "talk_game", "label": "Talked with Ana", "event": "talk_game", "love": 1, "per_day": 1},
+    {"id": "dishes_done", "label": "Washed the dishes", "event": "dishes_done", "love": 1, "per_day": 1, "if": {"love_lt": 20}},
+    {"id": "dishes_skipped", "label": "Left the dishes unwashed", "missing": "dishes_done", "love": -1, "if": {"ana_followers_lt": 500}}
+  ],
+  "weekly": [
+    {
+      "id": "rent",
+      "label": "Rent",
+      "weekday": 0,
+      "first_day": 8,
+      "amount": 150,
+      "event": "rent_paid",
+      "missing_love": -5,
+      "until_gate": 50,
+      "sender": "Ana",
+      "message": "Good morning dear. It is Monday: the rent is $%(amount)d. Please send it to me today. No rush, but I count on you."
+    }
+  ]
+}
