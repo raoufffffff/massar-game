@@ -162,3 +162,32 @@ Other scripts in `tools/` generate art/placeholder assets (`make_*.py`, `key_spr
    levels unlocked by followers, darkness at night lowering sharpness, Ana's appearance stages (2 for now),
    mood-based schedule choice, Supabase-fed content.
 Open art items: Warrior II crop, f0 start-fail image, yoga start pose sneakers, run frames/backgrounds/obstacles, yoga background.
+
+## 8. DRAFT (planning only, NOT built): Ana's state and what it drives
+Raouf's design, 2026-11-25. Do not build until he says so; Part 1 (chapter 1) comes first, start small
+(corruption + current stage only), add the rest one by one.
+
+Ana's state record (one place; everything else reads it, nothing recomputes):
+- Numbers: corruption/liberation (0-99), fitness, love, mood, followers. Mood = computed daily from the player's
+  actions plus a little randomness (not pure random). Followers = derived from published photos (not a free number).
+- Labels: current stage/path (chapter 1, Supernova week, ...), most-attracted-to (1st), second most-attracted-to,
+  her photographer, her manager.
+
+| Output | Inputs |
+|---|---|
+| Where she appears | corruption, stage |
+| Her photo poses | corruption, place, mood, stage |
+| How she talks to the player | love, corruption, mood |
+| Who she appears with | 1st and 2nd attraction, stage, photographer |
+| Her Supernova photos/stories (when the player is not her photographer) | corruption, 1st and 2nd attraction |
+| Follower growth | fitness + current followers always; plus the player's photos if he shoots her; otherwise only those two |
+
+Corruption phases (draft; thresholds 25/50/75, earlier 85 unconfirmed, ask):
+- 0-24: rises with each successful photo published on Supernova and with the player's compliments (talk games).
+- 25-49: rises when the player accepts her working with a male model and makes decisions such as flirting in public.
+- 50-74: becomes hard to control, rises by itself daily; the player must try to lower it.
+- 75-99: nothing stops it; at 90-99 it falls by itself over about a month down to 5; Ana is mostly absent then.
+Computed once at the end of each day from a day ledger (Night -> next Morning). Show hints, not raw numbers.
+
+Method: no content per combination; rules with 1-2 conditions, ordered by priority, fall back to the generic version.
+Names are labels only (internal key e.g. `liberation`). Raouf still looking for the "final recipe": draft first, he corrects.
