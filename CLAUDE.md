@@ -182,7 +182,9 @@ Ana's state record (one place; everything else reads it, nothing recomputes):
 | Her Supernova photos/stories (when the player is not her photographer) | corruption, 1st and 2nd attraction |
 | Follower growth | fitness + current followers always; plus the player's photos if he shoots her; otherwise only those two |
 
-Corruption phases (draft; thresholds 25/50/75, earlier 85 unconfirmed, ask):
+Corruption phases (CONFIRMED thresholds, 2026-11-25; max 100; tier names are the keys for pictures/expressions/dialogue/schedule):
+- 0-24 `shy_housewife`, 25-49 `mature_woman`, 50-74 `arrogant_star`, 75-100 `seduction_queen` (75-100 share one personality).
+Older notes on how each range rises (still draft):
 - 0-24: rises with each successful photo published on Supernova and with the player's compliments (talk games).
 - 25-49: rises when the player accepts her working with a male model and makes decisions such as flirting in public.
 - 50-74: becomes hard to control, rises by itself daily; the player must try to lower it.
@@ -191,3 +193,38 @@ Computed once at the end of each day from a day ledger (Night -> next Morning). 
 
 Method: no content per combination; rules with 1-2 conditions, ordered by priority, fall back to the generic version.
 Names are labels only (internal key e.g. `liberation`). Raouf still looking for the "final recipe": draft first, he corrects.
+
+## 9. DRAFT (planning only, NOT built): Chapter 1 and Ana's love rules
+Raouf's plan, 2026-11-25. Everything here is Part 1 rules; later parts change the sources (more professional duties).
+
+**Story opening** (narrative, plain Ren'Py with pictures + text, no free play): player is a last-year university student, parents went
+bankrupt and vanished; an acquaintance of his mother, Ana, rents him a room in her house for a very low price. Ana: ordinary,
+unconfident housewife, sad because her ex-husband cheated; first scene she welcomes him ("don't worry about the rent"); a huge
+broken wedding photo hangs in the house (player notices it, nobody explains). Then a 6-month jump (shown as narrative scenes).
+Player leaves university, sees his girlfriend with another man, she says she is tired of him because he is poor. He sits in the park;
+a camera flash: **Chris**, a photographer ("you are the saddest person I photographed today"; "that is not your business", both laugh).
+Player tells his story; Chris: "why not work in photography, at least you will not be broke", "I will teach you". (Plan continues, Raouf has not told the rest yet.)
+Chris is a candidate for "her photographer" label? (not confirmed).
+
+**Scene types**: 1) narrative scenes (normal Ren'Py, choices may change story and stats); 2) talk games (rhythm game with arrows,
+like a dance game, "at first"; later levels may change style).
+
+**Love (Ana's love/admiration for the player; "love" = "admiration", assumed one number)**, rules of Part 1 only:
+- Talk game: once per day with Ana, +1; gets harder every 10 points of love (difficulty table by love band; style may change at higher levels).
+- Dishes: washing +1 and raises her mood, when love < 20 AND love increase not locked AND (she dates the player OR she dates nobody and lives in her first home).
+- Not washing: -1 love when Ana's followers < 500 (regardless of where the player slept).
+- Max normal day: +2; can be 0 or -1.
+- She never agrees to be photographed (be a model) unless love >= 15. That is a barrier broken by the quest below.
+- Later stages: love < 10 locks her house for the player forever ("not now" = door condition by state, like places.json hours). Idea only.
+
+**Barriers (gates)** at love 5, 15, 25 (and further ones after 25 up to 75, same pattern): not crossed by dishes/talk games, only by a story quest.
+Between barriers love rises by dishes/talk games (0-4, 6-14, 16-24). A crossed barrier stays crossed even if love later falls
+(he may climb again with games). Implement as a quest chain, no separate gate field: number quest ("raise love to 4") -> story quest
+("fix her TV", example) sets love 5 -> number quest ("reach 14") -> story quest ("help her with $1000") sets love 15 -> ... The cap of daily
+gains = the current unfinished story quest. Needs: quest system, money system (the $1000 quest), maybe the bag.
+After love 25 (up to 75, mandatory story path) love no longer rises with talk games; other sources: training, gifts, occasions, a flirting game
+(different from talk games). Love up to 75 is forced by the quests.
+
+**Open questions**: what happens at the barrier numbers exactly (stops at 4/14/24 and quest sets 5/15/25?); starting love after the 6-month
+narrative; whether talk game / dishes take a time slot (4 slots per day); is complimenting in the talk game also raising corruption (his 0-24 note);
+what happens to the dishes penalty when the player is away all day (suggested: excused); how the chapter ends and what the Snapjob lesson with Chris looks like.
