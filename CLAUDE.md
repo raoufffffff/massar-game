@@ -274,3 +274,9 @@ dishes (+1 / -1 when followers < 500), one talk game (arrows, once per day), lov
 Then Raouf plays it and we judge whether scarcity is fun or tiring before adding more. Wait for his "ابدأ". Remaining questions for him: starting numbers (love, followers, money),
 first-Monday grace, how Chris's lesson/chapter end go, what the barrier numbers do exactly (stop at 4 and quest sets 5?). Risk noted to him: too many penalties after love 40
 may make the relationship feel like chores; keep all numbers editable. Ana must keep her own arc and motives (not a reward).
+
+## 12. SCOPE OF VERSION 1 (decided by Raouf 2026-11-25) - supersedes the slice in section 11 where they differ
+IN: chapter 1 only, Ana's love 0-30 only; her liberation/corruption never passes 30, so only TWO Ana poses/looks (shy_housewife 0-24, mature_woman 25-30);
+only 3 side stories, built from conversations with Ana (not deep); the goal is a SMOOTH, SUSTAINABLE play experience.
+OUT (future): rivals and their system (defense games, loneliness meter from 40, requests, discovery), the player working as photographer for other models.
+Consequence: love barriers 5, 15, 25 and the end of the chapter around 30; rent/dishes/talk game/Snapjob/Supernova-for-Ana stay in; everything from love 40 up stays in the drafts (sections 9-10) untouched.
