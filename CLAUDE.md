@@ -280,3 +280,10 @@ IN: chapter 1 only, Ana's love 0-30 only; her liberation/corruption never passes
 only 3 side stories, built from conversations with Ana (not deep); the goal is a SMOOTH, SUSTAINABLE play experience.
 OUT (future): rivals and their system (defense games, loneliness meter from 40, requests, discovery), the player working as photographer for other models.
 Consequence: love barriers 5, 15, 25 and the end of the chapter around 30; rent/dishes/talk game/Snapjob/Supernova-for-Ana stay in; everything from love 40 up stays in the drafts (sections 9-10) untouched.
+
+**Version 1 side stories (decided 2026-11-25)**: three stories NOT connected to Ana (stories tied to her come later), meant to show the variety of the world and things players may enjoy besides photography:
+1. Light racing games for money, with Carlos and Samantha (Samantha is a core character in the big design: here only a cameo, no romance branch opened yet - to confirm).
+2. Boxing: train and win first place in the district championship (gym room `combat` exists).
+3. Private investigator work with policewoman Lilian (idea: investigations with the camera, ties to Snapjob level 4 "investigator").
+Rewards for each: money, a relationship with another woman (v1: only "door opened"/flag, no active romance or infidelity system), and unlocking future branches.
+Because they do not touch Ana's love, Ana's rules stay simple; they only compete for time slots and give money. Suggested order: investigator (reuses the camera), boxing, then racing (reuse the runner mini-game).
