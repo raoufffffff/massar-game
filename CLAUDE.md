@@ -287,3 +287,8 @@ Consequence: love barriers 5, 15, 25 and the end of the chapter around 30; rent/
 3. Private investigator work with policewoman Lilian (idea: investigations with the camera, ties to Snapjob level 4 "investigator").
 Rewards for each: money, a relationship with another woman (v1: only "door opened"/flag, no active romance or infidelity system), and unlocking future branches.
 Because they do not touch Ana's love, Ana's rules stay simple; they only compete for time slots and give money. Suggested order: investigator (reuses the camera), boxing, then racing (reuse the runner mini-game).
+
+**Version 1 decisions (2026-11-25, later)**: End of the version: when Ana's love passes 30 a message says the player reached the end of the current version; no indicator can go higher and no new
+poses open (cap at 30). Starting numbers when free play begins: Ana's love 2, player's money 100 USD, Ana's followers 0 (she has no Supernova account yet; it is created when she agrees, love 15).
+Samantha = a university classmate of the player; "Carlos" (racing story) = the player's close friend (Raouf wrote "Chris" once; Chris is the photography mentor - assumed typo, to confirm).
+Open: 100 USD < rent 150 USD and Day 1 is a Monday -> needs a first-week grace (suggested: first rent on the second Monday).
