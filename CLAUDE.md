@@ -249,3 +249,21 @@ what happens to the dishes penalty when the player is away all day (suggested: e
   at 40 (suggested 100), whether it vanishes if love drops below 40, a daily cap on penalties (ignored request + meter).
 - Love sources by range: 0-25 talk game + dishes; 25-75 training, gifts, occasions, a flirting game (not the talk game). Barriers at 5, 15, 25, 40, ... up to 75 and the
   barrier at 50 (crossing it changes how she sees him, see eviction); every barrier = a story quest that sets the love value.
+
+## 10. DRAFT (planning only, NOT built): after love 40 - sudden drops, discovery, rivals, defense games
+Raouf's design, 2026-11-25. Not built. Numbers editable in the future editor.
+
+**Two ways love falls**: slow (neglect: dishes, company meter, ignored requests, rent) and sudden (a fatal mistake she discovers: love set to a value like 5; with barrier 50
+crossed this evicts him at once). Recovery after a sudden fall: hard, not impossible (a long apology quest back above 15). Give hints before disasters (fairness).
+**Discovery** of secret acts (player cheats): (1) by place: he takes another woman on a date to a place that is in Ana's schedule for that slot, so she sees him
+(`ana_location` already knows her place per slot; a "companion" state is needed); (2) by platform: a model who dates him posts photos with him on Supernova or stories
+(per-character `posts_about_him` chance). Secret acts go to the day ledger with an exposure risk; the discovery check runs at day end. Warn the player first (e.g. "Ana may be there tonight").
+
+**Rivals (5)**: Chris, Tom, John, Evan, Leo (Chris is also his mentor; John owns the cafe where the player can work). A rival can enter when the company meter is low (< 20 % for ~3 days, to confirm)
+and love < 60. Each person has their own love points for Ana; "first/second most attracted to" are DERIVED from these numbers (top two), not stored.
+**Defense games** (like talk games): start when the player's love is 50 and some rival has > 30 (becomes second). Warning appears; the player may ignore it, or search the map for Ana
+(her schedule is knowledge; searching costs time slots) and play the defense game. Win: rival -10. Lose or ignore: rival +10 AND the player's love -10. Every loss/ignore makes the next defense game harder.
+The war ends when someone drops below 15: rival < 15 -> he leaves the fight, Ana "gives the player a chance" and love can be raised again; player < 15 -> Ana leaves / evicts him.
+While the war is on love CANNOT be raised by other sources (she is really thinking of leaving). Winning does not raise the player's love; it only pushes the rival away.
+After winning, the player repairs the relationship by climbing to barrier 60 (a story quest). Open: rival's starting points and daily growth; one defense game or one per rival (suggested: one, tuned
+by difficulty); a "war bar" showing both numbers during the fight (suggested).
