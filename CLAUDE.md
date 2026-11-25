@@ -1,6 +1,6 @@
 # CLAUDE.md - read this first (project notes for Claude, written for future sessions)
 
-Last updated: 2026-11-25.  Keep this file current: when a system changes, change the matching section.
+Last updated: 2026-11-25 (talk game, dishes, rent button).  Keep this file current: when a system changes, change the matching section.
 
 ## 1. What this project is
 **Masar** - a Ren'Py 8.6.1 life-sim / photography game by Raouf (root on his PC: `C:\fun\Masar`).
@@ -131,6 +131,12 @@ rules in `game/data/story.json` (start 2/0, gates 5/15/25, version_cap 30, daily
 rent 150 every Monday from day 8, -5 if unpaid, show_numbers, dev_tools). `game/masar_story.rpy`: `default story`, wraps `mc.advance_time` once so every Night -> Morning
 calls `story_end_of_day`, screen `day_report` (shown by city_loop/place_loop when `story.pending`), F9 dev menu (`story_dev`). Simulator `tools/masar_sim.py`, checks `tools/test_story.py`.
 NOT wired yet (next steps): talk game and dishes as real actions that call `story.log(...)`, the pay-rent button for the player, the story quests that cross gates, tier-based Ana looks,
+
+**Talk game, dishes, rent button** (built 2026-11-25, `.rpy` untested in Ren'Py): `game/masar_talk.py` (pure: `TalkSession`, 6 arrows, success/fail, no points, 10 s; numbers and Ana's lines in `data/talk.json`),
+`game/masar_talk.rpy` (screens + `label talk_game(who)`; reuses the yoga arrow pictures; Ana sprite on the left). Menu item "Have a real conversation (talk game)" in `ana_click` (hidden once played today: `story.talked_today`);
+it returns "talkgame" and place_loop passes one time slot (win or lose). `story.talk_result(who, success, day, part)` logs `talk_try` and, on a win, `talk_game` (Ana) or `talk_game_<who>` (others, no Ana love).
+Dishes: action "Wash the dishes" (`story_actions` in masar_story.rpy, only home/kitchen, once a day, `label act_dishes`, logs `dishes_done`, costs a slot). Rent: button "Pay the rent ($N)" in every room on rent days (`__rent__` in place_loop -> `story.pay_rent`).
+Checks: `tools/test_talk.py`. NOT built yet: player stats (fitness/charisma/intelligence), charisma +1/-1 from the talk game, quest system.
 a "Story" tab in the editor (rules are edited in the JSON by hand for now). Note: with start love 2 and +2/day the first cap (4) is reached on day 1.
 
 ## 5. Conventions and pitfalls learned

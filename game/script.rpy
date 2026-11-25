@@ -80,6 +80,15 @@ label place_loop:
             if _return != "cancelled":
                 $ day, day_part = mc.advance_time(day, day_part)
                 $ time_name = mc.TIME_NAMES[day_part]
+        elif _return == "talkgame":
+            # the talk game takes one time slot (win or lose)
+            $ day, day_part = mc.advance_time(day, day_part)
+            $ time_name = mc.TIME_NAMES[day_part]
+        jump place_loop
+    if _return == "__rent__":
+        # the player pays Ana's rent (only offered on a Monday, see story.rent_due)
+        $ rent_ok, rent_text = story.pay_rent(phone, day, day_part)
+        $ renpy.notify(rent_text)
         jump place_loop
     if _return.startswith("__act__"):
         # An activity of the room (mini-game): costs one time slot unless it returns "cancelled"

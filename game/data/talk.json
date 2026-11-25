@@ -1,0 +1,21 @@
+{
+  "sequence_length": 6,
+  "seconds": 10,
+  "characters": {
+    "ana": {"name": "Ana"}
+  },
+  "lines": {
+    "ana": {
+      "win": [
+        "You always know what to say... thank you for listening.",
+        "I haven't laughed like that in a long time.",
+        "It is nice to have someone to talk to in this big house."
+      ],
+      "fail": [
+        "Sorry, I lost my train of thought... what were you saying?",
+        "Oh... never mind, it was nothing.",
+        "I think I am just tired today."
+      ]
+    }
+  }
+}

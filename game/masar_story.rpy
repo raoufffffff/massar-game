@@ -56,7 +56,28 @@ init 10 python:
         store.story.log(event, store.day, store.day_part)
         renpy.notify("Logged: %s (day %d)" % (event, store.day))
 
+    def story_actions(pid, rid):
+        """Extra actions the story adds to a room (shown under 'Pass time'): (label, title) pairs."""
+        out = []
+        if pid == "home" and rid == "kitchen" and not store.story.count("dishes_done", store.day):
+            out.append(("act_dishes", "Wash the dishes"))
+        return out
+
     config.overlay_screens.append("story_dev_keys")
+
+# Washing the dishes: costs the time slot (script.rpy passes it), written into the day ledger.
+# At the end of the day love +1 (if love < 20); skipping it costs -1 while Ana has fewer than 500 followers.
+label act_dishes:
+    $ story.log("dishes_done", day, day_part)
+    if ana_here:
+        if room_w > 1920:
+            scene expression room_view_bg()
+        show ana smile at ana_pos
+        with dissolve
+        ana "Oh, you don't have to... but thank you, dear."
+    "You wash the dishes while the kitchen fills with warm light. It takes a while, but the sink is empty at last."
+    hide ana
+    return
 
 # The end-of-day report (shown when the player is back in a room or on the map).
 screen day_report(rep):

@@ -84,6 +84,18 @@ class Story(object):
     def count(self, event, day):
         return sum(1 for e in self.ledger if e["event"] == event and e["day"] == day)
 
+    # ------------------------------------------------------------------ talk games
+    def talked_today(self, who, day):
+        """True when the player already played the talk game with `who` today (won or lost: one try a day)."""
+        return any(e["event"] == "talk_try" and e["day"] == day and e.get("who") == who for e in self.ledger)
+
+    def talk_result(self, who, success, day, part=0):
+        """Write the result of a talk game into the ledger.  A win with Ana is the event 'talk_game' (rules in
+        story.json give her love +1); wins with other characters are 'talk_game_<who>' and do not touch Ana's love."""
+        self.log("talk_try", day, part, who=who, success=bool(success))
+        if success:
+            self.log("talk_game" if who == "ana" else "talk_game_" + who, day, part, who=who)
+
     # ------------------------------------------------------------------ gates and caps
     def next_gate(self):
         """The first gate that was not crossed yet (None if there is none)."""

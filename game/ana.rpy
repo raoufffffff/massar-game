@@ -130,6 +130,9 @@ label ana_click:
         "Let's talk":
             call ana_talk
             return "talk"
+        "Have a real conversation (talk game)" if not story.talked_today("ana", day):
+            call talk_game("ana")
+            return "talkgame"
         "Can I take your photo?" if pose_opts:
             if not pose_opts:
                 show ana neutral

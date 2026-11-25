@@ -146,3 +146,10 @@ All numbers live in game/data/story.json (plain JSON; the editor has no tab for 
 Test the rules WITHOUT starting the game:   python tools/masar_sim.py --days 20 --quiet --cross 5@2 --cross 15@8
 Checks of the engine:                       python tools/test_story.py
 Not wired yet: the talk game and the dishes as real actions in the rooms, the story quests that cross the gates.
+
+
+TALK GAME, DISHES AND RENT (version 1)
+  game/data/talk.json: "sequence_length" (arrows, now 6), "seconds" (time limit, now 10), Ana's lines after a win or a loss.
+  One try per character per day; a win with Ana gives love +1 at the end of the day (rule "talk_game" in story.json).
+  Dishes: kitchen of the house, once a day, +1 love (below 20) or -1 if skipped (Ana under 500 followers).
+  Rent: on Mondays (from day 8) a "Pay the rent" button appears under "Pass time". Test the rules with: python tools/test_talk.py

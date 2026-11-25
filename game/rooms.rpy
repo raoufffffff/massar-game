@@ -291,11 +291,17 @@ screen room_nav(pid, current):
     key "K_t" action Return("__wait__")
 
     # Activities of this room (see ROOM_ACTIONS in masar_gym.py), under "Pass time"
-    $ acts = gym.actions_here(pid, current)
-    if acts:
+    $ acts = gym.actions_here(pid, current) + story_actions(pid, current)
+    $ rent_amt = story.rent_due(day)
+    if acts or rent_amt:
         vbox:
             pos (20, 180)
             spacing 6
+            if rent_amt:
+                textbutton ("Pay the rent ($%d)" % rent_amt):
+                    text_size 26
+                    text_color "#ffd36b"
+                    action Return("__rent__")
             for act_label, act_title in acts:
                 textbutton act_title:
                     text_size 26
