@@ -1,6 +1,6 @@
 # CLAUDE.md - read this first (project notes for Claude, written for future sessions)
 
-Last updated: 2026-11-24.  Keep this file current: when a system changes, change the matching section.
+Last updated: 2026-11-25.  Keep this file current: when a system changes, change the matching section.
 
 ## 1. What this project is
 **Masar** - a Ren'Py 8.6.1 life-sim / photography game by Raouf (root on his PC: `C:\fun\Masar`).
@@ -25,6 +25,12 @@ other characters/rivals unless Raouf says so. Full design lives in his "game bib
   He runs the game and reports errors (usually a traceback).
 - The sandbox copy may drift from his real project (he adds scenes/files I do not have, e.g. `playground_bench`).
   Code must tolerate missing entries (use `.get`, `getattr`, `renpy.loadable`).
+
+**Repo and workflow (added 2026-11-25).** The project lives on GitHub: `raoufffffff/massar-game` (public, branch `main`; push straight to `main`, no PRs).
+Raouf works on two PCs and keeps `git pull` / `git push` in sync; the sandbox only mirrors what he sends. A session can clone it read-only; to push
+it must attach the repo with push access (`add_repo`, access "push"). `.gitignore` excludes `__pycache__`, `game/data/_backup`, `chars_trash`, `poses_trash`,
+saves/cache. Not in the repo / not known to Claude: his "game bible" (one .md per character), his chat decisions that are not written here, and whether any
+`.rpy` change really runs (no Ren'Py in the sandbox - he reports tracebacks). When something here and the code disagree, trust the code and fix this file.
 
 ## 3. Layout
 ```
@@ -81,6 +87,11 @@ jpg/png/jpeg/webp (`mc.bg_exists` is set to `renpy.loadable` in rooms.rpy). Posi
 and under the lens (`cam_bar`); camera pans faster in wide rooms. Editor: `tools/masar_rooms.py` (size info, start view,
 shift, `box_problems`: subject rectangles the lens can never cover 55% of = error). `masar_shot.detect_subjects` lowers the
 10% frame-share rule for tiny subjects so a squirrel in a treetop is detectable when zoomed in.
+
+**Places/ids changed by Raouf**: the old place `fine` is now `restaurant` ("Fine Dining") with rooms `main` (Outside) and `inside` (Inside); its map icons may still be
+`images/map/fine_*.png` (`mc.map_art` falls back to that alias). The gym has a room `combat` ("Combat Ring"). All room pictures are now wide (32:9, 3840x1080-ish, the
+player sees 50%) with 4 time versions (`_noon` counts as afternoon); some old plain pictures (1920x1080 / 2752x1536) are still next to them and make the editor report
+"different sizes" - they should be moved out of `game/images/bg/` once all four times exist. `data/places.json` holds his opening hours (cafe, etc.) and the unlocked list.
 
 **Pictures by time of day** (stage 3, built 2026-11-24, untested in Ren'Py): `images/bg/<place>_<room>_<morning|afternoon|evening|night>.<ext>`
 (aliases noon/midday/day, dusk/sunset). `mc.bg_path(pid, rid, part=None)` (part None = current slot via `mc.part_now`, set in rooms.rpy)
