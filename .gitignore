@@ -28,3 +28,12 @@
 
 # Keystore files used for signing Android apps.
 /*.keystore
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Editor/game auto backups and trash (local only)
+/game/data/_backup/
+/chars_trash/
+/poses_trash/
