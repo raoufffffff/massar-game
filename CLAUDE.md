@@ -215,7 +215,7 @@ like a dance game, "at first"; later levels may change style).
 - Not washing: -1 love when Ana's followers < 500 (regardless of where the player slept).
 - Max normal day: +2; can be 0 or -1.
 - She never agrees to be photographed (be a model) unless love >= 15. That is a barrier broken by the quest below.
-- Later stages: love < 10 locks her house for the player forever ("not now" = door condition by state, like places.json hours). Idea only.
+- (Replaced by the eviction rule below: the old "love < 10 locks the house" idea is dropped.)
 
 **Barriers (gates)** at love 5, 15, 25 (and further ones after 25 up to 75, same pattern): not crossed by dishes/talk games, only by a story quest.
 Between barriers love rises by dishes/talk games (0-4, 6-14, 16-24). A crossed barrier stays crossed even if love later falls
@@ -228,3 +228,24 @@ After love 25 (up to 75, mandatory story path) love no longer rises with talk ga
 **Open questions**: what happens at the barrier numbers exactly (stops at 4/14/24 and quest sets 5/15/25?); starting love after the 6-month
 narrative; whether talk game / dishes take a time slot (4 slots per day); is complimenting in the talk game also raising corruption (his 0-24 note);
 what happens to the dishes penalty when the player is away all day (suggested: excused); how the chapter ends and what the Snapjob lesson with Chris looks like.
+
+**Update 2026-11-25 (later): rent, eviction, money, requests, loneliness, time.**
+- **Time is the currency of the game**: 4 slots a day, an action that takes time moves to the next slot (Morning -> Afternoon ...). On purpose the player can
+  never do everything in one day. Take time: training, photography, talk game, dishes. Free: random chat with Ana. Keep numbers editable.
+- **Rent (only before the player crosses barrier 50)**: 150 USD per week. Every Monday morning Ana sends a "pay rent" message; the player must pay that same day;
+  if Monday ends unpaid, love -5. Not paying is allowed (Ana says "don't worry about the rent", it is cheap, but unpaid rent costs love because she
+  assumes he will always pay). After barrier 50 there is no rent.
+- **Eviction**: before barrier 50 she never evicts, love may sit at 0 (she still sees him as her friend's son). After barrier 50 she sees him as a partner,
+  so when love falls to <= 15 she evicts him: he cannot enter her house until he repairs the relationship and love is above 15 again (if the story allows it).
+  First-Monday grace period: to decide (Day 1 is a Monday).
+- **Money sources**: Snapjob gigs; a job at John's cafe; Supernova (50 % of Ana's earnings and of any character he is the photographer of); side stories
+  and their paths. (Roadmap numbers: Snapjob rewards <= ~200; rent 150/week is about one gig a week.)
+- **Gifts** start at love 25. At love >= 40 many things open (dates, Ana messages him a lot with requests: dinner, meet-up, help). Ignoring a request lowers love.
+  To avoid invitations the player spends time with her once or twice a week; then she writes only for something important, not for dates.
+  Open: polite refusal softer than ignoring? weekly cap of requests? one free postpone?
+- **Loneliness/company meter** appears at love 40. Suggested internal name `company` (high = not lonely; display name to decide). Falls 10 per day; a date or a gift
+  raises it by 10-30 depending on gift/date quality. Below 20 % each night love -2. Easy to keep safe (a good date or gift every 3 days) on purpose.
+  Check: with -10/day the meter is flat only with a 30-point event every 3 days; weak gifts (10) make it drift down slowly. All numbers editable. Open: starting value
+  at 40 (suggested 100), whether it vanishes if love drops below 40, a daily cap on penalties (ignored request + meter).
+- Love sources by range: 0-25 talk game + dishes; 25-75 training, gifts, occasions, a flirting game (not the talk game). Barriers at 5, 15, 25, 40, ... up to 75 and the
+  barrier at 50 (crossing it changes how she sees him, see eviction); every barrier = a story quest that sets the love value.
