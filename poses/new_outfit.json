@@ -1,0 +1,27 @@
+{
+  "key": "new_outfit",
+  "raw": "pose_new_outfit",
+  "pose": "new_outfit",
+  "scene": "living_new_outfit",
+  "title": "new  outfit",
+  "place": "home",
+  "room": "living",
+  "xoff": "right",
+  "ax": 1520,
+  "despill": true,
+  "eyes_box": [
+    707,
+    161,
+    900,
+    261
+  ],
+  "mouth_box": [
+    800,
+    460,
+    960,
+    550
+  ],
+  "boxes_set": true,
+  "parts": {},
+  "shots": []
+}

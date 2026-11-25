@@ -1,0 +1,22 @@
+{
+  "key": "eat",
+  "raw": "pose_eating",
+  "pose": "eating",
+  "scene": "kitchen_eating",
+  "title": "Eating at the table",
+  "place": "home",
+  "room": "kitchen",
+  "xoff": "right",
+  "ax": 1520,
+  "despill": true,
+  "eyes_box": [740, 310, 960, 430],
+  "mouth_box": [800, 465, 940, 548],
+  "parts": {
+    "eat_plate":  {"name": "Her meal",           "roi": [490, 570, 305, 175], "zoom": 2.3, "expr_w": 0.0},
+    "eat_face":   {"name": "Face",               "roi": [300, 70, 225, 235],  "zoom": 2.5, "expr_w": 1.0},
+    "eat_hands":  {"name": "Hands at the table", "roi": [295, 455, 420, 195], "zoom": 2.2, "expr_w": 0.0},
+    "eat_figure": {"name": "Full shot, eating",  "roi": [70, 30, 730, 1050],  "zoom": 1.0, "expr_w": 0.3}
+  },
+  "shots": [["eat_plate", "neutral"], ["eat_face", "smile"], ["eat_face", "neutral"],
+            ["eat_hands", "neutral"], ["eat_figure", "neutral"]]
+}

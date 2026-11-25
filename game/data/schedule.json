@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "characters": {
+    "ana": {
+      "entries": [
+        {
+          "id": "e1",
+          "days": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "parts": [
+            0
+          ],
+          "away": false,
+          "place": "home",
+          "room": "kitchen",
+          "look": {
+            "type": "pose",
+            "pose": "coffee"
+          }
+        },
+        {
+          "id": "e2",
+          "days": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "parts": [
+            0
+          ],
+          "away": false,
+          "place": "home",
+          "room": "living",
+          "look": {
+            "type": "pose",
+            "pose": "coffee"
+          }
+        },
+        {
+          "id": "e3",
+          "days": [
+            5,
+            6
+          ],
+          "parts": [
+            1,
+            2
+          ],
+          "away": false,
+          "place": "park",
+          "room": "lake",
+          "look": {
+            "type": "pose",
+            "pose": "lake_view"
+          },
+          "at": {
+            "x": 794,
+            "y": 844,
+            "scale": 0.415,
+            "flip": false
+          }
+        },
+        {
+          "id": "e4",
+          "days": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "parts": [
+            1
+          ],
+          "away": false,
+          "place": "home",
+          "room": "ana_door",
+          "look": {
+            "type": "pose",
+            "pose": "sweeping"
+          }
+        },
+        {
+          "id": "e5",
+          "days": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "parts": [
+            2
+          ],
+          "away": false,
+          "place": "home",
+          "room": "kitchen",
+          "look": {
+            "type": "pose",
+            "pose": "cooking"
+          }
+        },
+        {
+          "id": "e6",
+          "days": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "parts": [
+            2
+          ],
+          "away": false,
+          "place": "home",
+          "room": "kitchen",
+          "look": {
+            "type": "pose",
+            "pose": "eating"
+          }
+        },
+        {
+          "id": "e7",
+          "days": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "parts": [
+            3
+          ],
+          "away": true,
+          "place": null,
+          "room": null,
+          "look": {
+            "type": "stand"
+          }
+        },
+        {
+          "id": "e8",
+          "days": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "parts": [
+            3
+          ],
+          "away": false,
+          "place": "home",
+          "room": "living",
+          "look": {
+            "type": "char",
+            "char": "ana",
+            "image": "ana_new_fit"
+          },
+          "at": {
+            "x": 1468,
+            "y": 1096,
+            "scale": 0.619,
+            "flip": true
+          }
+        }
+      ]
+    }
+  }
+}

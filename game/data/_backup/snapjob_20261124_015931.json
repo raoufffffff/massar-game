@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "match_required": 80,
+  "board_size": 5,
+  "categories": [
+    [
+      "people",
+      "People"
+    ],
+    [
+      "nature",
+      "Nature"
+    ],
+    [
+      "places",
+      "Places"
+    ],
+    [
+      "animals",
+      "Animals"
+    ]
+  ],
+  "levels": {
+    "1": {
+      "name": "Beginner",
+      "followers": 0
+    },
+    "2": {
+      "name": "Amateur",
+      "followers": 300
+    }
+  },
+  "subjects": {
+    "pool_view": {
+      "label": "The whole pool",
+      "category": "places",
+      "box": [
+        0.068,
+        0.0,
+        0.865,
+        1.0
+      ]
+    },
+    "woman_pool": {
+      "label": "Woman at the pool's edge",
+      "category": "people",
+      "box": [
+        0.0,
+        0.334,
+        0.505,
+        0.508
+      ]
+    },
+    "swimmer": {
+      "label": "Swimmers",
+      "category": "people",
+      "box": [
+        0.239,
+        0.33,
+        0.31,
+        0.313
+      ]
+    },
+    "loungers": {
+      "label": "Pool loungers and towels",
+      "category": "places",
+      "box": [
+        0.21,
+        0.299,
+        0.179,
+        0.174
+      ]
+    },
+    "floor_view": {
+      "label": "The whole training floor",
+      "category": "places",
+      "box": [
+        0.068,
+        0.0,
+        0.865,
+        1.0
+      ]
+    },
+    "woman_rope": {
+      "label": "Woman skipping rope",
+      "category": "people",
+      "box": [
+        0.0,
+        0.17,
+        0.6,
+        0.76
+      ]
+    },
+    "man_squat": {
+      "label": "Man squatting with a barbell",
+      "category": "people",
+      "box": [
+        0.526,
+        0.34,
+        0.32,
+        0.323
+      ]
+    },
+    "dumbbells": {
+      "label": "The dumbbell rack",
+      "category": "places",
+      "box": [
+        0.43,
+        0.421,
+        0.145,
+        0.17
+      ]
+    },
+    "lockers_view": {
+      "label": "The whole locker room",
+      "category": "places",
+      "box": [
+        0.068,
+        0.0,
+        0.865,
+        1.0
+      ]
+    },
+    "man_shoes": {
+      "label": "Man tying his shoes",
+      "category": "people",
+      "box": [
+        0.062,
+        0.334,
+        0.365,
+        0.591
+      ]
+    },
+    "locker_rows": {
+      "label": "Rows of lockers",
+      "category": "places",
+      "box": [
+        0.598,
+        0.275,
+        0.295,
+        0.316
+      ]
+    },
+    "grandma": {
+      "label": "grandma",
+      "category": "people",
+      "box": [
+        0.2292,
+        0.4481,
+        0.0908,
+        0.2667
+      ]
+    }
+  },
+  "rooms": [
+    {
+      "place": "park",
+      "room": "lake",
+      "subjects": [
+        "grandma"
+      ]
+    },
+    {
+      "place": "gym",
+      "room": "pool",
+      "subjects": [
+        "pool_view",
+        "woman_pool",
+        "swimmer",
+        "loungers"
+      ]
+    },
+    {
+      "place": "gym",
+      "room": "floor",
+      "subjects": [
+        "floor_view",
+        "woman_rope",
+        "man_squat",
+        "dumbbells"
+      ]
+    },
+    {
+      "place": "gym",
+      "room": "lockers",
+      "subjects": [
+        "lockers_view",
+        "man_shoes",
+        "locker_rows"
+      ]
+    },
+    {
+      "place": "univ",
+      "room": "yard",
+      "subjects": []
+    }
+  ],
+  "gigs": [
+    {
+      "subject": "grandma",
+      "title": "grandma",
+      "client": "Client",
+      "brief": "Photograph: grandma.",
+      "reward": 100,
+      "level": 1,
+      "id": "grandma"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "key": "lake", "raw": "pose_lake", "pose": "lake_view", "scene": "lake_back",
+  "title": "Looking at the lake", "place": "park", "room": "lake",
+  "xoff": 4, "ax": 700, "despill": true,
+  "room_view": {"x": 560, "y": 820, "scale": 0.28, "tint": "#e6efe0"},
+  "parts": {
+    "lake_figure": {"name": "From behind",         "roi": [200, 15, 400, 1065], "zoom": 1.0, "expr_w": 0.0},
+    "lake_hair":   {"name": "Her hair",            "roi": [290, 15, 240, 310],   "zoom": 2.5, "expr_w": 0.0},
+    "lake_back":   {"name": "Back and shoulders",  "roi": [235, 215, 330, 280],  "zoom": 2.0, "expr_w": 0.0},
+    "lake_shoes":  {"name": "Her sneakers",        "roi": [320, 950, 180, 130],  "zoom": 2.5, "expr_w": 0.0}
+  },
+  "shots": [["lake_figure", "neutral"], ["lake_hair", "neutral"],
+            ["lake_back", "neutral"], ["lake_shoes", "neutral"]]
+}

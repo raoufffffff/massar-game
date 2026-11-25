@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "unlocked": [
+    "park",
+    "univ",
+    "studios",
+    "cafe",
+    "beachbar",
+    "fine",
+    "gym",
+    "beach",
+    "library",
+    "clothes",
+    "bakery",
+    "home",
+    "police"
+  ],
+  "places": {},
+  "rooms": {
+    "cafe/main": {
+      "open": [
+        0,
+        1,
+        2
+      ]
+    },
+    "cafe/terrace": {
+      "open": [
+        0,
+        1,
+        2
+      ]
+    },
+    "clothes/fitting": {
+      "open": []
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "characters": {
+    "ana": {
+      "name": "ana",
+      "images": {
+        "ana_new_fit": {
+          "label": "ana_new_fit",
+          "file": "chars/ana/ana_new_fit.png",
+          "glow": "chars/ana/ana_new_fit_glow.png",
+          "size": [
+            612,
+            1535
+          ],
+          "params": {
+            "tol": 50,
+            "shrink": 1,
+            "feather": 1,
+            "spill": 4,
+            "glow_size": 7,
+            "glow_power": 110,
+            "glow_color": "#ffffff",
+            "margin": 48
+          }
+        }
+      }
+    },
+    "ana_lake": {
+      "name": "ana_lake",
+      "images": {
+        "anna_lake": {
+          "label": "anna_lake",
+          "file": "chars/ana_lake/anna_lake.png",
+          "glow": "chars/ana_lake/anna_lake_glow.png",
+          "size": [
+            838,
+            2443
+          ],
+          "params": {
+            "tol": 50,
+            "shrink": 1,
+            "feather": 1,
+            "spill": 4,
+            "glow_size": 7,
+            "glow_power": 110,
+            "glow_color": "#ffeec8",
+            "margin": 48
+          }
+        }
+      }
+    }
+  }
+}

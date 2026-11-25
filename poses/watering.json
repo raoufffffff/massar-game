@@ -1,0 +1,22 @@
+{
+  "key": "wat",
+  "raw": "pose_watering",
+  "pose": "watering",
+  "scene": "upstairs_watering",
+  "title": "Watering the geraniums",
+  "place": "home",
+  "room": "ana_door",
+  "xoff": "right",
+  "ax": 1520,
+  "despill": false,
+  "eyes_box": [730, 225, 950, 335],
+  "mouth_box": [730, 320, 900, 410],
+  "parts": {
+    "wat_face":    {"name": "Her glance",      "roi": [290, 50, 200, 240],  "zoom": 2.4, "expr_w": 1.0},
+    "wat_flowers": {"name": "The geraniums",   "roi": [395, 610, 400, 265], "zoom": 1.8, "expr_w": 0.0},
+    "wat_can":     {"name": "The watering can","roi": [425, 440, 195, 150], "zoom": 3.0, "expr_w": 0.0},
+    "wat_figure":  {"name": "Full shot",       "roi": [110, 50, 690, 1020], "zoom": 1.0, "expr_w": 0.3}
+  },
+  "shots": [["wat_face", "neutral"], ["wat_face", "smile"], ["wat_flowers", "neutral"],
+            ["wat_can", "neutral"], ["wat_figure", "neutral"]]
+}

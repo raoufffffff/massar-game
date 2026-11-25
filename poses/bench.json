@@ -1,0 +1,16 @@
+{
+  "key": "bench", "raw": "pose_bench", "pose": "bench", "scene": "playground_bench",
+  "title": "On the bench", "place": "park", "room": "playground",
+  "xoff": "right", "ax": 1520, "despill": true,
+ "eyes_box": [735, 325, 890, 412],
+"mouth_box": [790, 434, 872, 486],
+  "parts": {
+    "bench_face":   {"name": "Face",             "roi": [290, 85, 200, 215],  "zoom": 2.5, "expr_w": 1.0},
+    "bench_hands":  {"name": "Hands in her lap", "roi": [380, 520, 220, 130], "zoom": 2.3, "expr_w": 0.0},
+    "bench_shoes":  {"name": "Her sneakers",     "roi": [450, 850, 320, 230], "zoom": 1.8, "expr_w": 0.0},
+    "bench_legs":   {"name": "Crossed legs",     "roi": [250, 600, 480, 480], "zoom": 1.2, "expr_w": 0.0},
+    "bench_figure": {"name": "Full shot, bench", "roi": [10, 85, 790, 995],   "zoom": 1.0, "expr_w": 0.3}
+  },
+  "shots": [["bench_face", "smile"], ["bench_face", "neutral"], ["bench_hands", "neutral"],
+            ["bench_shoes", "neutral"], ["bench_legs", "neutral"], ["bench_figure", "neutral"]]
+}

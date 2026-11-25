@@ -1,0 +1,22 @@
+{
+  "key": "cook",
+  "raw": "pose_cooking",
+  "pose": "cooking",
+  "scene": "kitchen_cooking",
+  "title": "Cooking in the kitchen",
+  "place": "home",
+  "room": "kitchen",
+  "xoff": 4,
+  "ax": 1274,
+  "despill": false,
+  "eyes_box": [765, 300, 985, 430],
+  "mouth_box": [815, 462, 950, 545],
+  "parts": {
+    "cook_dish":   {"name": "What she is cooking", "roi": [440, 425, 235, 300],  "zoom": 2.2, "expr_w": 0.0},
+    "cook_face":   {"name": "Face",                "roi": [320, 85, 215, 225],   "zoom": 2.5, "expr_w": 1.0},
+    "cook_figure": {"name": "Full shot, cooking",  "roi": [150, 25, 540, 1055],  "zoom": 1.0, "expr_w": 0.3},
+    "cook_lower":  {"name": "Waist down",          "roi": [180, 620, 420, 440],  "zoom": 1.5, "expr_w": 0.0}
+  },
+  "shots": [["cook_dish", "neutral"], ["cook_face", "smile"], ["cook_face", "neutral"],
+            ["cook_figure", "neutral"], ["cook_lower", "neutral"]]
+}

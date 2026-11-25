@@ -1,0 +1,107 @@
+{
+  "key": "sof",
+  "raw": "pose_sofa",
+  "pose": "sofa",
+  "scene": "living_sofa",
+  "title": "On the sofa with coffee",
+  "place": "home",
+  "room": "living",
+  "xoff": "right",
+  "ax": 1520,
+  "despill": true,
+  "eyes_box": [
+    680,
+    225,
+    930,
+    330
+  ],
+  "mouth_box": [
+    740,
+    300,
+    900,
+    375
+  ],
+  "parts": {
+    "sof_face": {
+      "name": "Her face",
+      "roi": [
+        320,
+        60,
+        170,
+        190
+      ],
+      "zoom": 2.6,
+      "expr_w": 1.0
+    },
+    "sof_mug": {
+      "name": "Her coffee",
+      "roi": [
+        190,
+        225,
+        110,
+        110
+      ],
+      "zoom": 3.2,
+      "expr_w": 0.0
+    },
+    "sof_legs": {
+      "name": "Crossed legs",
+      "roi": [
+        250,
+        430,
+        400,
+        330
+      ],
+      "zoom": 1.8,
+      "expr_w": 0.0
+    },
+    "sof_figure": {
+      "name": "Whole sofa shot",
+      "roi": [
+        20,
+        30,
+        780,
+        1040
+      ],
+      "zoom": 1.0,
+      "expr_w": 0.3
+    },
+    "sof_shoe": {
+      "name": "Her sneaker",
+      "roi": [
+        590,
+        630,
+        200,
+        120
+      ],
+      "zoom": 3.0,
+      "expr_w": 0.0
+    }
+  },
+  "shots": [
+    [
+      "sof_face",
+      "neutral"
+    ],
+    [
+      "sof_face",
+      "smile"
+    ],
+    [
+      "sof_mug",
+      "neutral"
+    ],
+    [
+      "sof_legs",
+      "neutral"
+    ],
+    [
+      "sof_shoe",
+      "neutral"
+    ],
+    [
+      "sof_figure",
+      "neutral"
+    ]
+  ]
+}

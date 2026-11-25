@@ -1,0 +1,362 @@
+{
+  "version": 1,
+  "match_required": 80,
+  "board_size": 5,
+  "categories": [
+    [
+      "people",
+      "People"
+    ],
+    [
+      "nature",
+      "Nature"
+    ],
+    [
+      "places",
+      "Places"
+    ],
+    [
+      "animals",
+      "Animals"
+    ]
+  ],
+  "levels": {
+    "1": {
+      "name": "Beginner",
+      "followers": 0
+    },
+    "2": {
+      "name": "Amateur",
+      "followers": 300
+    }
+  },
+  "subjects": {
+    "lake_view": {
+      "label": "The whole lake",
+      "category": "places",
+      "box": [
+        0.068,
+        0.0,
+        0.865,
+        1.0
+      ]
+    },
+    "duck": {
+      "label": "Ducks on the water",
+      "category": "nature",
+      "box": [
+        0.165,
+        0.461,
+        0.24,
+        0.242
+      ]
+    },
+    "dock": {
+      "label": "The wooden dock",
+      "category": "places",
+      "box": [
+        0.508,
+        0.399,
+        0.24,
+        0.242
+      ]
+    },
+    "bench": {
+      "label": "The bench by the path",
+      "category": "places",
+      "box": [
+        0.696,
+        0.582,
+        0.26,
+        0.262
+      ]
+    },
+    "pool_view": {
+      "label": "The whole pool",
+      "category": "places",
+      "box": [
+        0.068,
+        0.0,
+        0.865,
+        1.0
+      ]
+    },
+    "woman_pool": {
+      "label": "Woman at the pool's edge",
+      "category": "people",
+      "box": [
+        0.0,
+        0.334,
+        0.505,
+        0.508
+      ]
+    },
+    "swimmer": {
+      "label": "Swimmers",
+      "category": "people",
+      "box": [
+        0.239,
+        0.33,
+        0.31,
+        0.313
+      ]
+    },
+    "loungers": {
+      "label": "Pool loungers and towels",
+      "category": "places",
+      "box": [
+        0.21,
+        0.299,
+        0.179,
+        0.174
+      ]
+    },
+    "floor_view": {
+      "label": "The whole training floor",
+      "category": "places",
+      "box": [
+        0.068,
+        0.0,
+        0.865,
+        1.0
+      ]
+    },
+    "woman_rope": {
+      "label": "Woman skipping rope",
+      "category": "people",
+      "box": [
+        0.0,
+        0.17,
+        0.6,
+        0.76
+      ]
+    },
+    "man_squat": {
+      "label": "Man squatting with a barbell",
+      "category": "people",
+      "box": [
+        0.526,
+        0.34,
+        0.32,
+        0.323
+      ]
+    },
+    "dumbbells": {
+      "label": "The dumbbell rack",
+      "category": "places",
+      "box": [
+        0.43,
+        0.421,
+        0.145,
+        0.17
+      ]
+    },
+    "lockers_view": {
+      "label": "The whole locker room",
+      "category": "places",
+      "box": [
+        0.068,
+        0.0,
+        0.865,
+        1.0
+      ]
+    },
+    "man_shoes": {
+      "label": "Man tying his shoes",
+      "category": "people",
+      "box": [
+        0.062,
+        0.334,
+        0.365,
+        0.591
+      ]
+    },
+    "locker_rows": {
+      "label": "Rows of lockers",
+      "category": "places",
+      "box": [
+        0.598,
+        0.275,
+        0.295,
+        0.316
+      ]
+    },
+    "ab": {
+      "label": "ab",
+      "category": "places",
+      "box": [
+        0.74,
+        0.657,
+        0.066,
+        0.143
+      ]
+    }
+  },
+  "rooms": [
+    {
+      "place": "park",
+      "room": "lake",
+      "subjects": [
+        "lake_view",
+        "duck",
+        "dock",
+        "bench"
+      ]
+    },
+    {
+      "place": "gym",
+      "room": "pool",
+      "subjects": [
+        "pool_view",
+        "woman_pool",
+        "swimmer",
+        "loungers"
+      ]
+    },
+    {
+      "place": "gym",
+      "room": "floor",
+      "subjects": [
+        "floor_view",
+        "woman_rope",
+        "man_squat",
+        "dumbbells"
+      ]
+    },
+    {
+      "place": "gym",
+      "room": "lockers",
+      "subjects": [
+        "lockers_view",
+        "man_shoes",
+        "locker_rows"
+      ]
+    },
+    {
+      "place": "univ",
+      "room": "yard",
+      "subjects": [
+        "ab"
+      ]
+    }
+  ],
+  "gigs": [
+    {
+      "id": "duck",
+      "subject": "duck",
+      "title": "Ducks on the pond",
+      "client": "Greenleaf Nature Blog",
+      "brief": "A clear shot of the ducks swimming on the lake.",
+      "reward": 120,
+      "level": 1
+    },
+    {
+      "id": "dock",
+      "subject": "dock",
+      "title": "The old wooden dock",
+      "client": "Lakeside Weekly",
+      "brief": "The wooden dock reaching into the water.",
+      "reward": 100,
+      "level": 1
+    },
+    {
+      "id": "bench",
+      "subject": "bench",
+      "title": "A quiet bench",
+      "client": "Calm Mornings Magazine",
+      "brief": "The bench by the gravel path, nobody sitting on it.",
+      "reward": 90,
+      "level": 1
+    },
+    {
+      "id": "lake_view",
+      "subject": "lake_view",
+      "title": "Lake in the morning",
+      "client": "City Parks Office",
+      "brief": "A wide shot that shows the whole lake.",
+      "reward": 130,
+      "level": 1
+    },
+    {
+      "id": "woman_pool",
+      "subject": "woman_pool",
+      "title": "Relaxing by the pool",
+      "client": "Aqua Spa Brochure",
+      "brief": "A woman sitting at the pool's edge with her feet in the water.",
+      "reward": 170,
+      "level": 1
+    },
+    {
+      "id": "swimmer",
+      "subject": "swimmer",
+      "title": "Swimmers in motion",
+      "client": "Aqua Spa Brochure",
+      "brief": "People swimming in the pool.",
+      "reward": 160,
+      "level": 1
+    },
+    {
+      "id": "loungers",
+      "subject": "loungers",
+      "title": "Pool loungers",
+      "client": "Hotel Horizon Ads",
+      "brief": "The loungers and the folded towels by the pool.",
+      "reward": 110,
+      "level": 1
+    },
+    {
+      "id": "woman_rope",
+      "subject": "woman_rope",
+      "title": "Skipping rope",
+      "client": "FitLife Magazine",
+      "brief": "A woman skipping rope on the training floor.",
+      "reward": 190,
+      "level": 1
+    },
+    {
+      "id": "man_squat",
+      "subject": "man_squat",
+      "title": "Heavy squats",
+      "client": "FitLife Magazine",
+      "brief": "A man squatting with a loaded barbell.",
+      "reward": 180,
+      "level": 1
+    },
+    {
+      "id": "dumbbells",
+      "subject": "dumbbells",
+      "title": "Dumbbell rack",
+      "client": "Gym Gear Catalog",
+      "brief": "The rack of dumbbells by the windows.",
+      "reward": 100,
+      "level": 1
+    },
+    {
+      "id": "man_shoes",
+      "subject": "man_shoes",
+      "title": "Lacing up",
+      "client": "Sneaker Supply Co.",
+      "brief": "A man tying his sports shoes on the bench.",
+      "reward": 150,
+      "level": 1
+    },
+    {
+      "id": "locker_rows",
+      "subject": "locker_rows",
+      "title": "Locker rows",
+      "client": "Gym Gear Catalog",
+      "brief": "Rows of lockers, the teal and white ones.",
+      "reward": 110,
+      "level": 1
+    },
+    {
+      "id": "ab",
+      "subject": "ab",
+      "title": "ab",
+      "client": "Client",
+      "brief": "Photograph: ab.",
+      "reward": 100,
+      "level": 1
+    }
+  ]
+}

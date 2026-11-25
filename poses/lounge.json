@@ -1,0 +1,22 @@
+{
+  "key": "lng",
+  "raw": "pose_lounge",
+  "pose": "lounge",
+  "scene": "living_lounge",
+  "title": "Coffee in the living room",
+  "place": "home",
+  "room": "living",
+  "xoff": 4,
+  "ax": 1274,
+  "despill": true,
+  "eyes_box": [680, 225, 930, 330],
+  "mouth_box": [740, 300, 900, 375],
+  "parts": {
+    "lng_face":   {"name": "Her wink",       "roi": [320, 60, 170, 190],  "zoom": 2.6, "expr_w": 1.0},
+    "lng_mug":    {"name": "Her coffee",     "roi": [190, 225, 110, 110], "zoom": 3.2, "expr_w": 0.0},
+    "lng_hip":    {"name": "Hand on hip",    "roi": [440, 420, 150, 110], "zoom": 3.0, "expr_w": 0.0},
+    "lng_figure": {"name": "Full figure",    "roi": [130, 30, 540, 1040], "zoom": 1.0, "expr_w": 0.3}
+  },
+  "shots": [["lng_face", "neutral"], ["lng_face", "smile"], ["lng_mug", "neutral"],
+            ["lng_hip", "neutral"], ["lng_figure", "neutral"]]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "tab",
+  "raw": "pose_table",
+  "pose": "table",
+  "scene": "kitchen_table",
+  "title": "Leaning on the table",
+  "place": "home",
+  "room": "kitchen",
+  "xoff": 4,
+  "ax": 1274,
+  "despill": true,
+  "eyes_box": [680, 285, 930, 405],
+"mouth_box": [750, 436, 870, 504],
+"parts": {
+  "tab_face":   {"name": "Face",      "roi": [285, 30, 230, 250], "zoom": 2.5, "expr_w": 1.0},
+  "tab_figure": {"name": "Full shot", "roi": [40, 25, 720, 1055], "zoom": 1.0, "expr_w": 0.3}
+},
+
+ "shots": [["tab_face", "smile"], ["tab_face", "neutral"], ["tab_figure", "neutral"]]
+}
