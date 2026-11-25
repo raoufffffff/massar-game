@@ -267,3 +267,10 @@ The war ends when someone drops below 15: rival < 15 -> he leaves the fight, Ana
 While the war is on love CANNOT be raised by other sources (she is really thinking of leaving). Winning does not raise the player's love; it only pushes the rival away.
 After winning, the player repairs the relationship by climbing to barrier 60 (a story quest). Open: rival's starting points and daily growth; one defense game or one per rival (suggested: one, tuned
 by difficulty); a "war bar" showing both numbers during the fight (suggested).
+
+## 11. Agreed next step (2026-11-25): build a small playable slice FIRST
+Do not build rivals/discovery/loneliness yet. Slice = two weeks in Ana's house: day ledger + end-of-day review, rent message every Monday (150 USD, -5 love if unpaid),
+dishes (+1 / -1 when followers < 500), one talk game (arrows, once per day), love barrier 5 with one story quest, 4 time slots with actions that move time, simulator to test.
+Then Raouf plays it and we judge whether scarcity is fun or tiring before adding more. Wait for his "ابدأ". Remaining questions for him: starting numbers (love, followers, money),
+first-Monday grace, how Chris's lesson/chapter end go, what the barrier numbers do exactly (stop at 4 and quest sets 5?). Risk noted to him: too many penalties after love 40
+may make the relationship feel like chores; keep all numbers editable. Ana must keep her own arc and motives (not a reward).
