@@ -1,8 +1,9 @@
 {
-  "sequence_length": 6,
-  "seconds": 10,
+  "seconds": 7,
   "characters": {
-    "ana": {"name": "Ana"}
+    "ana": {
+      "name": "Ana"
+    }
   },
   "lines": {
     "ana": {
@@ -17,5 +18,64 @@
         "I think I am just tired today."
       ]
     }
+  },
+  "rounds": 3,
+  "need_wins": 2,
+  "arrows": [
+    2,
+    3,
+    3
+  ],
+  "conversations": {
+    "ana": [
+      {
+        "ana": "I tried a new recipe this morning. Be honest... is it too salty?",
+        "you": "It's perfect. Honestly, better than any restaurant.",
+        "win": "Better than a restaurant? Now you're just flattering me... but I'll take it.",
+        "fail": "You hesitated... it's too salty, isn't it? Be honest."
+      },
+      {
+        "ana": "This house feels so big sometimes. It's good to hear another voice in it.",
+        "you": "I like it here. It feels like home.",
+        "win": "Home... that's a lovely thing to say. Thank you.",
+        "fail": "Oh... yes. Of course. It's just a house, I suppose."
+      },
+      {
+        "ana": "I couldn't sleep last night. Silly thoughts. Do you ever have nights like that?",
+        "you": "All the time. But talking helps.",
+        "win": "It does, doesn't it? I feel a little lighter already.",
+        "fail": "Mm. Maybe I should stop troubling you with my thoughts."
+      },
+      {
+        "ana": "Your camera... is it hard to learn? I always thought a photo only shows what you point at.",
+        "you": "A good photo shows what you feel about it. I could show you.",
+        "win": "I'd like that. I'm just not very photogenic...",
+        "fail": "Oh. I didn't mean to bore you with silly questions."
+      },
+      {
+        "ana": "I haven't had my hair done in months. I must look a mess.",
+        "you": "You look great. Really.",
+        "win": "Stop it... you're making me blush.",
+        "fail": "You don't have to be polite. I do own a mirror, you know."
+      },
+      {
+        "ana": "Mrs. Dalia from next door asked if I was lonely. Can you believe that?",
+        "you": "You've got me around. Even if I'm terrible company.",
+        "win": "Terrible? You're the best part of my week. Don't tell her I said so.",
+        "fail": "Hm? Sorry, I wasn't sure what you meant."
+      },
+      {
+        "ana": "I've been thinking about filming my cooking. Silly idea, right? Who would watch me?",
+        "you": "I would. And I bet a lot of people would.",
+        "win": "Hearing that gives me courage. Maybe I'll try one day.",
+        "fail": "You think so? ...Never mind, forget I said anything."
+      },
+      {
+        "ana": "Don't worry about the rent, okay? I know things are hard for you right now.",
+        "you": "Thank you, Ana. I'll make it up to you.",
+        "win": "You already do, just by being here.",
+        "fail": "Of course... as long as you're not struggling alone."
+      }
+    ]
   }
 }

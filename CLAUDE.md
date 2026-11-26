@@ -134,9 +134,11 @@ calls `story_end_of_day`, screen `day_report` (shown by city_loop/place_loop whe
 NOT wired yet (next steps): the story quests that cross gates, tier-based Ana looks,
 a "Story" tab in the editor (rules are edited in the JSON by hand for now). Note: with start love 2 and +2/day the first cap (4) is reached on day 1.
 
-**Talk game, dishes, rent button** (built 2026-11-25, `.rpy` untested in Ren'Py): `game/masar_talk.py` (pure: `TalkSession`, 6 arrows, success/fail, no points, 10 s; numbers and Ana's lines in `data/talk.json`),
-`game/masar_talk.rpy` (screens + `label talk_game(who)`; reuses the yoga arrow pictures; Ana sprite on the left). Menu item "Have a real conversation (talk game)" in `ana_click` (hidden once played today: `story.talked_today`);
-it returns "talkgame" and place_loop passes one time slot (win or lose). `story.talk_result(who, success, day, part)` logs `talk_try` and, on a win, `talk_game` (Ana) or `talk_game_<who>` (others, no Ana love).
+**Talk game, dishes, rent button** (talk game rebuilt 2026-11-26 as a SITTING CONVERSATION, `.rpy` untested in Ren'Py): `game/masar_talk.py` (pure: `TalkSession(who, day)`: 3 moments, 2 wins needed, stops as soon as decided; each moment = Ana says a line, the player answers with 2/3/3 arrows in 7 s; `round_res`, `next_round()`),
+`game/masar_talk.rpy` (screens `talk_intro/ask/play/react/hud`, label `talk_game(who)`), `game/data/talk.json` (rounds, need_wins, arrows, seconds, `conversations.ana` = list of {ana, you, win, fail}, closing `lines`), `game/data/talk_scenes.json` (place/room -> pictures neutral/smile/annoyed; `default` home/kitchen is used where a room has no scene).
+Pictures `game/images/talk/kitchen_<neutral|smile|annoyed>.jpg` (2560x1440, made by Raouf, flat cartoon style; the 3 must keep identical pose/background). The scene picture is shown with `show expression ... as talkbg` and moves: breathing, slow push-in during the countdown (`talk_cam_to`), pulse on success, lean away on failure; UI lives in the bottom band over `images/ui/talk_shade.png` so her face is free.
+Planned scenes (Raouf, 2026-11-26): kitchen table (built), living-room sofa, walking in the garden/park, standing upstairs; add one = 3 pictures + an entry in talk_scenes.json (a scene editor tab is a good next step).
+Menu item "Have a real conversation (talk game)" in `ana_click` (hidden once played today: `story.talked_today`); it returns "talkgame" and place_loop passes one time slot (win or lose). `story.talk_result(who, success, day, part)` logs `talk_try` and, on a win, `talk_game` (Ana) or `talk_game_<who>` (others, no Ana love).
 Dishes: action "Wash the dishes" (`story_actions` in masar_story.rpy, only home/kitchen, once a day, `label act_dishes`, logs `dishes_done`, costs a slot). Rent: button "Pay the rent ($N)" in every room on rent days (`__rent__` in place_loop -> `story.pay_rent`).
 Checks: `tools/test_talk.py`.
 

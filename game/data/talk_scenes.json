@@ -1,0 +1,13 @@
+{
+  "default": "home/kitchen",
+  "scenes": {
+    "home/kitchen": {
+      "title": "Kitchen table",
+      "images": {
+        "neutral": "images/talk/kitchen_neutral.jpg",
+        "smile": "images/talk/kitchen_smile.jpg",
+        "annoyed": "images/talk/kitchen_annoyed.jpg"
+      }
+    }
+  }
+}
