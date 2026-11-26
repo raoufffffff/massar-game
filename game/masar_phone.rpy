@@ -527,8 +527,8 @@ screen phone_me():
                     padding (16, 10)
                     vbox:
                         spacing 2
-                        text ("%s%s" % (msh.item(me_item)["name"], (" x%d" % me_n) if me_n > 1 else "")) size 24 color "#ffffff"
-                        text msh.item(me_item).get("text", "") size 18 color "#aab2c8" xsize 480
+                        text ("%s%s" % (mshop.item(me_item)["name"], (" x%d" % me_n) if me_n > 1 else "")) size 24 color "#ffffff"
+                        text mshop.item(me_item).get("text", "") size 18 color "#aab2c8" xsize 480
 
 
 # ------------------------------------------------------------------------------------ Contacts

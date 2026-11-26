@@ -5,7 +5,7 @@
 init python:
     import masar_quests as mq
     import masar_player as mpl
-    import masar_shops as msh
+    import masar_shops as mshop
 
 default player = mpl.Player()
 default quests = mq.Quests()
@@ -103,7 +103,7 @@ label quest_plumber_fix:
 
 # --- shops: a room with an entry in game/data/shops.json shows the action "Shop"
 label act_shop:
-    $ shop_def = msh.shop_at(location, room)
+    $ shop_def = mshop.shop_at(location, room)
     if not shop_def:
         return "cancelled"
     $ shop_greeting = shop_def["greeting"]
@@ -114,7 +114,7 @@ label .loop:
     if _return == "leave":
         return "cancelled"
     $ shop_iid, shop_price = _return
-    $ shop_ok, shop_text = msh.buy(player, phone, shop_iid, shop_price, day, day_part)
+    $ shop_ok, shop_text = mshop.buy(player, phone, shop_iid, shop_price, day, day_part)
     $ renpy.notify(shop_text)
     $ flush_notes()
     jump .loop
@@ -134,7 +134,7 @@ screen shop_screen(shop_def):
             text ("Your money: $%d" % phone.money) size 28 color "#7dffa0" xalign 0.5
             null height 6
             for shop_row in shop_def["items"]:
-                $ shop_it = msh.item(shop_row["id"])
+                $ shop_it = mshop.item(shop_row["id"])
                 $ shop_owned = shop_it.get("unique") and player.has(shop_row["id"])
                 frame:
                     background Solid("#1d2333")

@@ -65,7 +65,7 @@ init 10 python:
         if pid == "home" and rid == "kitchen" and not store.story.count("dishes_done", store.day):
             out.append(("act_dishes", "Wash the dishes"))
         out += store.quests.actions(mq.make_ctx(store.story, store.player, store.phone), pid, rid, "room")
-        shop = msh.shop_at(pid, rid)
+        shop = mshop.shop_at(pid, rid)
         if shop:
             out.append(("act_shop", "Shop: " + shop["title"]))
         return out
