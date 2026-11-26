@@ -1238,13 +1238,17 @@ def run_gui():
             return {"x": 960, "y": 1080, "scale": round(950.0 / max(1, e["size"][1]), 3) if e else 0.4, "flip": False}
         return {"x": 1274, "y": 1080, "scale": 1.0, "flip": False}
 
+    places_late = {}                                       # filled once the Places tab exists (it is built after the Schedule tab)
     schedule_ui = masar_schedule.build_tab(dict(tk=tk, ttk=ttk, messagebox=messagebox, ImageTk=ImageTk, root=root, nb=nb,
                                                 status=status, ROOT=ROOT, rooms=all_rooms(), mark=mark, masar_data=masar_data,
                                                 get_chars=lambda: chars_ui["data"]["characters"], default_at=default_at,
-                                                room_start=lambda pid, rid: masar_rooms.get_start(rooms_data, pid, rid)))
+                                                room_start=lambda pid, rid: masar_rooms.get_start(rooms_data, pid, rid),
+                                                hours=lambda pid, rid, part: (masar_places.is_open(places_late["ui"]["data"], pid, rid, part) if places_late else True)))
 
     places_ui = masar_places.build_tab(dict(tk=tk, ttk=ttk, nb=nb, mc=mc, mark=mark,
                                             data=masar_places.load(masar_data, mc.PART1_UNLOCKED)))
+    places_late["ui"] = places_ui
+    schedule_ui["refresh"]()
 
     # ------------------------------------------------------------------------------- start
     refresh_gigs()

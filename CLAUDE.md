@@ -176,7 +176,7 @@ Start: `python tools/masar_editor.py` from the project root. Tabs:
 - **Characters**: import green-screen pictures -> cut-out + glow (`tools/masar_chars.py`, Pillow only).
 - **Photo scenes**: wizard around `tools/add_pose.py` (needs `pip install pillow numpy opencv-python`); writes
   `poses/<id>.json`, raw pictures, camera pictures, face layers, `poses_data.py`. Auto-suggests eye/mouth boxes.
-- **Schedule**: weekly grid + placement dialog (`tools/masar_schedule.py`); scrolls in panoramic rooms.
+- **Schedule** (redesigned 2026-11-26, `tools/masar_schedule.py`): week grid with pictures per cell, place colours and red warnings (closed rooms via the `hours` ctx callback = Places tab, missing pictures); one "studio" window per entry (live room preview, drag her feet, wheel = size, gallery of looks, live warnings); Duplicate, Copy slot to..., Undo (Ctrl+Z); scrolls in panoramic rooms. Tested headless (xvfb + python3.12).
 Other scripts in `tools/` generate art/placeholder assets (`make_*.py`, `key_sprites.py`) and previews.
 `tools/README_EDITOR.txt` is the user manual (English).
 

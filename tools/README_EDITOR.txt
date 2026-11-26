@@ -55,15 +55,21 @@ Needs once:  pip install pillow numpy opencv-python   (the same packages as tool
 
 SCHEDULE TAB (where she is, when, and how she looks)
 ----------------------------------------------------
-The grid is the week: 7 days x 4 time slots (Morning / Afternoon / Evening / Night). Green = one option, yellow = several
-options (the game picks ONE at random, the same all slot long), grey = nobody (she is away).
-1. Click a slot, then "Add...".
-2. "When": tick the days and slots the entry covers (buttons: Every day / Weekdays / Weekend). One entry can cover many slots.
-3. "Where": a room, or tick "She is away".
-4. "How she looks": an activity picture (a photo-scene pose such as cooking), her standing picture, or a picture of the
-   Characters library (the one you cut from the green background; it glows when the mouse is over her).
-5. "Place her in the room...": drag her feet to the spot on the floor, wheel or slider = size, Mirror = flip.
-   If you do not place her, the game uses its usual place for that picture.
+The grid is the week: 7 days x 4 time slots (Morning / Afternoon / Evening / Night). Every cell shows small pictures of how she
+looks and the room name. Colour = place (each place has its own pastel), yellow = several options (the game picks ONE at random,
+the same all slot long), grey = away, light grey "nobody" = empty slot. A red "!" = something to check (room closed at that time
+according to the Places tab, missing picture, room without a picture).
+1. Click a slot (the blue frame), then "+ New entry" (or double-click the slot). The STUDIO opens: one window.
+2. Left: the room, big, with her in it. Click or drag in the room = her feet (red dot) go there; mouse wheel = her size;
+   Shift + wheel scrolls a panoramic room; the cyan dashed frame is what the player sees when entering. "Show the room at" lets
+   you check the morning / night picture.
+3. Right: 1 When (days and time slots; buttons Every day / Weekdays / Weekend), 2 Where (a room, or "She is away"),
+   3 How she looks = a gallery of pictures: standing, activity pictures and the Characters library. One click picks one.
+   Warnings in red appear live (closed room, no picture).
+4. "Save entry" (or Enter). If you never click in the room the game uses its usual place for that picture.
+Under the grid: the list of the entries of the selected slot with pictures, and a small preview of the room. Double-click an entry to edit.
+Buttons: Duplicate (Ctrl+D: opens a copy to change and save), Copy this slot to... (copies every entry of the slot to other
+days / time slots), Delete, Undo (Ctrl+Z, up to 60 steps).
 Press Save (Ctrl+S): the data goes to game/data/schedule.json.
 When the player clicks her, the option "Can I take your photo?" appears only if a photo scene exists in that room.
 (Old rules from masar_core.py were moved into this data: same behaviour until you change it.)
