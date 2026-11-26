@@ -133,6 +133,8 @@ label talk_game(who="ana"):
     call screen talk_feedback(talk_res)
     # the day ledger remembers it: one try a day; a win gives love at the end of the day (rules in story.json)
     $ story.talk_result(who, talk_s.success, day, day_part)
+    $ note(player.talk(talk_s.success))
+    $ flush_notes()
     $ talk_line = talk.pick_line(who, talk_s.success, day)
     if talk_line:
         ana "[talk_line]"

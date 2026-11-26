@@ -131,7 +131,7 @@ ROOMS = {
     "cafe": [("main", "Inside"), ("terrace", "Terrace")],
     "gym": [("floor", "Training Floor"), ("pool", "Pool"), ("lockers", "Locker Rooms"), ("combat", "Combat Ring")],
     "studios": [("lobby", "Reception"), ("studio1", "Studio 1"), ("studio2", "Studio 2")],
-    "mall": [("hall", "Mall Hall"), ("salon", "Barber Salon"), ("gifts", "Gift Shop"), ("food", "Food Court")],
+    "mall": [("hall", "Mall Hall"), ("salon", "Barber Salon"), ("gifts", "Gift Shop"), ("food", "Food Court"), ("store", "General Store")],
     "clothes": [("main", "Showroom"), ("fitting", "Fitting Room")],
     "hq": [("lobby", "Reception"), ("office", "Office"), ("hall", "Meeting Room")],
     "hotel": [("lobby", "Reception"), ("room", "Room")],

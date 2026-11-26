@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.join(ROOT, "game"))
 
 import masar_story as ms          # noqa: E402
 import masar_phone as mph         # noqa: E402
+import masar_player as mpl        # noqa: E402
 
 
 def main(argv=None):
@@ -43,6 +44,7 @@ def main(argv=None):
     ms.rules(reload=True)
     st = ms.Story()
     phone = mph.Phone()
+    player = mpl.Player()
     if a.money is not None:
         phone.money = a.money
     if a.followers is not None:
@@ -72,7 +74,7 @@ def main(argv=None):
             st.cross_gate(g, day, 2)
             if not a.quiet:
                 print("   [day %d] story quest crosses gate %d" % (day, g))
-        rep = st.end_of_day(day, phone)
+        rep = st.end_of_day(day, phone, player)
         if a.quiet:
             print("day %2d  love %2d (%+d)  money $%d%s" % (day, st.love, rep["delta"], phone.money,
                                                       "  END OF VERSION" if rep["ended"] else ""))

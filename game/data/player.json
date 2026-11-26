@@ -1,0 +1,11 @@
+{
+  "start": {"fitness": 5, "charisma": 5, "intelligence": 15},
+  "max": 100,
+  "labels": {"fitness": "Fitness", "charisma": "Charisma", "intelligence": "Intelligence"},
+  "daily_decay": {"fitness": 0.5},
+  "training": [
+    {"min_points": 10, "gain": 2},
+    {"min_points": 6, "gain": 1}
+  ],
+  "talk": {"win": 1, "fail": -1}
+}

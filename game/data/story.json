@@ -3,12 +3,45 @@
   "dev_tools": true,
   "version_cap": 30,
   "end_message": "You have reached the end of the current version of Masar. Ana's love cannot rise any higher and no new poses will open for now. Thank you for playing!",
-  "start": {"love": 2, "ana_followers": 0},
-  "gates": [5, 15, 25],
+  "start": {
+    "love": 2,
+    "ana_followers": 0
+  },
+  "gates": [
+    5,
+    15,
+    25
+  ],
   "daily": [
-    {"id": "talk_game", "label": "Talked with Ana", "event": "talk_game", "love": 1, "per_day": 1},
-    {"id": "dishes_done", "label": "Washed the dishes", "event": "dishes_done", "love": 1, "per_day": 1, "if": {"love_lt": 20}},
-    {"id": "dishes_skipped", "label": "Left the dishes unwashed", "missing": "dishes_done", "love": -1, "if": {"ana_followers_lt": 500}}
+    {
+      "id": "talk_game",
+      "label": "Talked with Ana",
+      "event": "talk_game",
+      "love": 1,
+      "per_day": 1,
+      "when": "now"
+    },
+    {
+      "id": "dishes_done",
+      "label": "Washed the dishes",
+      "event": "dishes_done",
+      "love": 1,
+      "per_day": 1,
+      "if": {
+        "love_lt": 20
+      },
+      "when": "now"
+    },
+    {
+      "id": "dishes_skipped",
+      "label": "Left the dishes unwashed",
+      "missing": "dishes_done",
+      "love": -1,
+      "if": {
+        "ana_followers_lt": 500
+      },
+      "when": "end_of_day"
+    }
   ],
   "weekly": [
     {

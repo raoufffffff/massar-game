@@ -6,8 +6,10 @@ The rules are NOT in this file: they are in game/data/story.json (numbers, condi
 
 How it works
   * During the day the game writes what the player did into the LEDGER:   story.log("dishes_done", day, part)
-  * When the clock passes from Night to the next Morning the game calls   story.end_of_day(day, phone)
-    which reads the ledger of that day, applies the rules, and returns a REPORT (a dict) for the player.
+    Rules with  "when": "now"  (talk game, dishes) change love AT ONCE (a short note is queued: story.pop_notes()).
+  * When the clock passes from Night to the next Morning the game calls   story.end_of_day(day, phone, player)
+    which applies the rules with  "when": "end_of_day"  (penalties: unwashed dishes, unpaid rent, fitness decay)
+    and returns a REPORT (a dict) for the player, with everything that happened that day.
   * Love only rises up to the next gate that was not crossed yet (gates: 5, 15, 25...). A gate is crossed by a
     story quest:  story.cross_gate(5)  sets love to 5 and the gate stays crossed even if love falls later.
   * Love never passes version_cap (30): at that point the "end of this version" message is shown once.
@@ -79,7 +81,58 @@ class Story(object):
         e = {"event": event, "day": day, "part": part}
         e.update(info)
         self.ledger.append(e)
+        for rule in rules().get("daily", []):
+            if rule.get("when", "end_of_day") == "now" and rule.get("event") == event:
+                self._apply_now(rule, day)
         return e
+
+    # ------------------------------------------------------------------ immediate effects, notes, the day's lines
+    def _lines(self):
+        if not hasattr(self, "day_lines"):
+            self.day_lines = []
+        return self.day_lines
+
+    def _notes(self):
+        if not hasattr(self, "notes"):
+            self.notes = []
+        return self.notes
+
+    def pop_notes(self):
+        """Short texts the game should show now (and forget)."""
+        n = list(self._notes())
+        self.notes = []
+        return n
+
+    def _touch_day(self):
+        """Remember the love the day started with (before the first change of the day)."""
+        if getattr(self, "day_love_start", None) is None:
+            self.day_love_start = self.love
+
+    def _apply_now(self, rule, day):
+        """An event rule that works at once: per-day limit, conditions, cap, then love changes and a note is queued."""
+        n = self.count(rule["event"], day)
+        if n > rule.get("per_day", 99) or not _holds(rule.get("if"), self):
+            return
+        gain = rule.get("love", 0)
+        self._touch_day()
+        before = self.love
+        if gain > 0:
+            self.love = min(100, min(before + gain, max(before, self.cap())))
+        else:
+            self.love = max(0, before + gain)
+        delta = self.love - before
+        if delta:
+            self._lines().append((rule.get("label", rule["id"]), delta))
+            self._notes().append("Ana's love %+d" % delta if rules().get("show_numbers", True) else rule.get("label", "Ana"))
+        elif gain > 0:
+            self.day_capped = True
+            self._notes().append("Her feelings cannot grow further until something changes between you.")
+        if self.love >= rules()["version_cap"]:
+            self.love = rules()["version_cap"]
+            if not self.ended:
+                self.ended = True
+                self._ended_today = True
+                self._notes().append(rules().get("end_message", ""))
 
     def count(self, event, day):
         return sum(1 for e in self.ledger if e["event"] == event and e["day"] == day)
@@ -115,6 +168,9 @@ class Story(object):
         if gate not in self.gates_crossed:
             self.gates_crossed.append(gate)
         if self.love < gate:
+            self._touch_day()
+            self._lines().append(("Something special happened between you", gate - self.love))
+            self._notes().append("Ana's love %+d" % (gate - self.love))
             self.love = gate
         self.log("gate_crossed", day, part, gate=gate)
 
@@ -151,15 +207,19 @@ class Story(object):
         return True, "You paid the rent: $%d." % amount
 
     # ------------------------------------------------------------------ the end of a day
-    def end_of_day(self, day, phone=None):
-        """Review the ledger of `day`, apply the rules, return the report (also kept in self.pending)."""
+    def end_of_day(self, day, phone=None, player=None):
+        """Apply the end-of-day rules for `day`, return the report (also kept in self.pending).
+        The report lists everything that changed love today: what already happened at once, and the penalties."""
         r = rules()
-        lines = []
+        lines = list(self._lines())
+        before = getattr(self, "day_love_start", None)
+        if before is None:
+            before = self.love
+        capped = getattr(self, "day_capped", False)
         delta = 0
-        before = self.love
-        # --- daily rules
+        # --- daily rules that work at the end of the day (the "now" ones were applied when they happened)
         for rule in r.get("daily", []):
-            if not _holds(rule.get("if"), self):
+            if rule.get("when", "end_of_day") == "now" or not _holds(rule.get("if"), self):
                 continue
             if "event" in rule:
                 n = min(self.count(rule["event"], day), rule.get("per_day", 99))
@@ -179,11 +239,12 @@ class Story(object):
             else:
                 lines.append(("Rent paid", 0))
         # --- apply (gains stop at the cap, losses stop at 0)
-        love = before + delta
+        love = self.love + delta
         if delta > 0:
-            love = min(love, max(before, self.cap()))
+            love = min(love, max(self.love, self.cap()))
+            capped = True if love < self.love + delta else capped
         love = max(0, min(100, love))
-        ended_now = False
+        ended_now = getattr(self, "_ended_today", False)
         top = r["version_cap"]
         if love >= top:
             love = top
@@ -191,6 +252,8 @@ class Story(object):
                 self.ended = True
                 ended_now = True
         self.love = love
+        # --- the player's own numbers (fitness slowly fades)
+        stat_lines = player.end_of_day() if player is not None else []
         # --- messages for the new morning
         messages = []
         nd = day + 1
@@ -203,12 +266,16 @@ class Story(object):
                 phone.add_message(sender, text, nd, 0)
         report = {
             "day": day, "love_before": before, "love_after": love, "delta": love - before,
-            "lines": lines, "messages": messages, "ended": ended_now,
-            "capped": delta > 0 and love < before + delta and not ended_now,
+            "lines": lines, "stat_lines": stat_lines, "messages": messages, "ended": ended_now,
+            "capped": capped and not ended_now,
             "show_numbers": r.get("show_numbers", True), "end_message": r.get("end_message", ""),
         }
         self.history.append(report)
         self.ledger = [e for e in self.ledger if e["day"] > day]
+        self.day_lines = []
+        self.day_love_start = None
+        self.day_capped = False
+        self._ended_today = False
         self.pending = report
         return report
 
@@ -221,6 +288,8 @@ def report_text(rep):
     out = ["Day %d is over." % rep["day"]]
     for label, v in rep["lines"]:
         out.append("  %s %s" % (label, ("%+d" % v) if rep["show_numbers"] and v else ""))
+    for label, text in rep.get("stat_lines", []):
+        out.append("  %s %s" % (label, text))
     if not rep["lines"]:
         out.append("  Nothing special happened.")
     if rep["show_numbers"]:

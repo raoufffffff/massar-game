@@ -1,0 +1,15 @@
+{
+  "items": {
+    "toolkit": {"name": "Plumbing toolkit", "text": "Wrenches, tape, a few spare parts. Everything you need to fix a leaking pipe if you know how.", "unique": true}
+  },
+  "shops": {
+    "mall/store": {
+      "title": "General Store",
+      "seller": "Clerk",
+      "greeting": "Welcome to the Mart! Tools, groceries, everything you did not know you needed.",
+      "items": [
+        {"id": "toolkit", "price": 90}
+      ]
+    }
+  }
+}

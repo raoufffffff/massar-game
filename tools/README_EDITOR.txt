@@ -153,3 +153,16 @@ TALK GAME, DISHES AND RENT (version 1)
   One try per character per day; a win with Ana gives love +1 at the end of the day (rule "talk_game" in story.json).
   Dishes: kitchen of the house, once a day, +1 love (below 20) or -1 if skipped (Ana under 500 followers).
   Rent: on Mondays (from day 8) a "Pay the rent" button appears under "Pass time". Test the rules with: python tools/test_talk.py
+
+
+QUESTS, SHOPS AND THE PLAYER'S NUMBERS (version 1)
+  game/data/quests.json: each quest has steps. A step has "text", "hint" (what the phone tells the player) and "if" (when it is done):
+      love_gte N | flag "name" | item "id" | stat_gte {"stat":"intelligence","n":10} | gigs_done_gte {"level":1,"n":3} | money_gte N | quest_done "id"
+  A step may have an "action": {"who":"ana" (a choice when clicking Ana) or "room" (a button in the room), "place", "room", "title",
+      "label" (a Ren'Py scene), "flag" (set when it ends), "time" (slots it costs), "needs" (conditions), "fail_text"}.
+  A quest may have "requires": ["other quest id"] and a "reward": {"gate": 5, "money": 50, "message": "..."}.
+  game/data/shops.json: "items" (name, text, unique) and "shops": {"place/room": {title, seller, greeting, items:[{id, price}]}}.
+      Every room that has an entry gets a "Shop" button. The General Store is the room mall/store.
+  game/data/player.json: starting numbers (fitness 5, charisma 5, intelligence 15), gym points -> fitness, charisma after a talk game, daily fading.
+  game/data/story.json: every daily rule has "when": "now" (applied at once) or "end_of_day" (in the day report).
+  Check all of it without starting the game:  python tools/test_quests.py

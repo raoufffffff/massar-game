@@ -1,0 +1,44 @@
+{
+  "domains": {"ana": "Ana", "snapjob": "Snapjob"},
+  "quests": [
+    {
+      "id": "ana_know", "domain": "ana", "title": "Get to know Ana",
+      "summary": "Ana owns the house you live in, but you hardly know her. Spend some time with her.",
+      "steps": [
+        {"text": "Raise Ana's love to 4",
+         "hint": "Find Ana at home and have a real conversation with her. Helping around the house (the dishes) counts too.",
+         "if": {"love_gte": 4}}
+      ]
+    },
+    {
+      "id": "ana_plumber", "domain": "ana", "title": "The Plumber", "requires": ["ana_know"],
+      "summary": "Something is wrong in Ana's kitchen. A plumber is expensive... but maybe you can help.",
+      "steps": [
+        {"text": "Ask Ana if something is wrong",
+         "hint": "Ana is often in the living room in the morning. Click her and ask if something is wrong.",
+         "if": {"flag": "plumber_asked"},
+         "action": {"who": "ana", "place": "home", "room": "living", "title": "Is something wrong?", "label": "quest_plumber_ask", "flag": "plumber_asked", "time": 0}},
+        {"text": "Buy a plumbing toolkit",
+         "hint": "The General Store in the Mall sells tools. It costs about $90.",
+         "if": {"item": "toolkit"}},
+        {"text": "Fix the kitchen pipes",
+         "hint": "Go to the kitchen with your toolkit. You need to be clever enough to do this.",
+         "if": {"flag": "plumber_fixed"},
+         "action": {"who": "room", "place": "home", "room": "kitchen", "title": "Fix the kitchen pipes", "label": "quest_plumber_fix", "flag": "plumber_fixed", "time": 1,
+                    "needs": {"item": "toolkit", "stat_gte": {"stat": "intelligence", "n": 10}},
+                    "fail_text": "You look at the pipes and have no idea where to start. You need the right tools and a clearer head."}}
+      ],
+      "reward": {"gate": 5, "message": "Ana is grateful. Something has changed between you."}
+    },
+    {
+      "id": "snap_first", "domain": "snapjob", "title": "First steps in photography",
+      "summary": "Snapjob clients pay for simple photos. Start with the easy gigs.",
+      "steps": [
+        {"text": "Complete 3 level 1 Snapjob gigs",
+         "hint": "Open Snapjob on your phone, choose a gig, take the photo in the right place and upload it.",
+         "if": {"gigs_done_gte": {"level": 1, "n": 3}}}
+      ],
+      "reward": {"money": 50, "message": "Snapjob bonus: $50 for your first three gigs."}
+    }
+  ]
+}

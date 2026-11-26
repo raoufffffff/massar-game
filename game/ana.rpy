@@ -126,9 +126,16 @@ label ana_click:
     ana "[ana_greet]"
     # The photo option only exists where a photo scene exists for this place
     $ pose_opts = mp.poses_here(location, room, ana_available_poses())
+    # a quest may add one choice here (e.g. "Is something wrong?")
+    $ qa_choice = quest_ana_option()
+    $ qa_opt = qa_choice is not None
+    $ qa_qid, qa_idx, qa_title = qa_choice if qa_opt else ("", 0, "")
     menu:
         "Let's talk":
             call ana_talk
+            return "talk"
+        "[qa_title]" if qa_opt:
+            call quest_action(qa_qid, qa_idx)
             return "talk"
         "Have a real conversation (talk game)" if not story.talked_today("ana", day):
             call talk_game("ana")

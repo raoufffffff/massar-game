@@ -12,6 +12,7 @@ default ph_filter = "all"        # gallery filter
 default ph_ana_filter = "any"    # gallery sub-filter for Ana (shot type)
 default ph_photo_id = None       # the photo being looked at
 default ph_gig_id = None         # the gig being looked at
+default ph_quest_id = None       # the quest being looked at
 default ph_result = None         # result of the last upload
 default photo_subject = "view"   # what the player chose to photograph
 default photo_gig_hint_done = False
@@ -28,6 +29,7 @@ init python:
         store.ph_view = "list"
         store.ph_photo_id = None
         store.ph_gig_id = None
+        store.ph_quest_id = None
         store.ph_result = None
 
     def ph_open(app):
@@ -35,7 +37,12 @@ init python:
         store.ph_view = "list"
         store.ph_photo_id = None
         store.ph_gig_id = None
+        store.ph_quest_id = None
         store.ph_result = None
+
+    def ph_quest_open(qid):
+        store.ph_quest_id = qid
+        store.ph_view = "detail"
 
     def ph_home():
         if store.ph_app == "messages":
@@ -54,6 +61,7 @@ init python:
         elif v in ("detail", "result"):
             store.ph_view = "list"
             store.ph_photo_id = None
+            store.ph_quest_id = None
             store.ph_result = None
         else:
             ph_home()
@@ -68,6 +76,7 @@ init python:
         store.ph_result = store.phone.submit(gig_id, photo_id, store.day, store.day_part, mph.level_for(store.followers))
         store.ph_photo_id = photo_id
         store.ph_view = "result"
+        flush_notes()
 
     def ph_delete(pid):
         store.phone.delete_photo(pid)
@@ -218,8 +227,11 @@ screen phone():
                 use phone_header("Bank")
                 use phone_bank
             elif ph_app == "tasks":
-                use phone_header("Tasks")
-                use phone_tasks
+                use phone_header("Quests")
+                use phone_quests
+            elif ph_app == "me":
+                use phone_header("Me")
+                use phone_me
             elif ph_app == "contacts":
                 use phone_header("Contacts")
                 use phone_contacts
@@ -249,7 +261,7 @@ screen phone_home():
     text "Day [day]" font NAV_FONT size 84 color "#ffffff" xalign 0.5 ypos 66
     text "[time_name]" size 32 color "#d7dcff" xalign 0.5 ypos 168
     $ ph_unread = phone.unread()
-    $ ph_apps = [("messages", "Messages"), ("gallery", "Gallery"), ("snapjob", "Snapjob"), ("supernova", "Supernova"), ("bank", "Bank"), ("tasks", "Tasks"), ("contacts", "Contacts")]
+    $ ph_apps = [("messages", "Messages"), ("gallery", "Gallery"), ("snapjob", "Snapjob"), ("supernova", "Supernova"), ("bank", "Bank"), ("tasks", "Quests"), ("me", "Me"), ("contacts", "Contacts")]
     for i, a in enumerate(ph_apps):
         $ ph_icon = "images/ui/phone_app_%s.png" % a[0]
         fixed:
@@ -374,6 +386,149 @@ screen phone_tasks():
                             text t["text"] size 22 color "#e6e9f2" xsize 480
                             if t["due"]:
                                 text ("Due: day %d" % t["due"]) size 20 color "#ffb347"
+
+
+# ------------------------------------------------------------------------------------ Quests
+screen quest_bar(cur, tgt, w=470):
+    $ qb_frac = max(0.0, min(1.0, float(cur) / tgt)) if tgt else 0.0
+    fixed:
+        xysize (w, 22)
+        add Solid("#2b3347") xysize (w, 22)
+        add Solid("#4cd964") xysize (int(w * qb_frac), 22)
+        text ("%g / %g" % (cur, tgt)) size 16 color "#ffffff" align (0.5, 0.5)
+
+screen phone_quests():
+    $ q_ctx = quests_ctx()
+    if ph_view == "detail" and ph_quest_id:
+        use phone_quest_detail(ph_quest_id, q_ctx)
+    else:
+        $ q_active = quests.active()
+        $ q_done = [mq.quest(i) for i in quests.done if mq.quest(i)]
+        $ q_tasks = phone.open_tasks()
+        if not q_active and not q_done and not q_tasks:
+            vbox:
+                align (0.5, 0.4)
+                spacing 10
+                text "No quests yet." size 30 color "#aab2c8" xalign 0.5
+        else:
+            viewport:
+                pos (18, 124)
+                xysize (548, 820)
+                mousewheel True
+                draggable True
+                scrollbars "vertical"
+                vbox:
+                    spacing 10
+                    xfill True
+                    for q_dom, q_dname in mq.data()["domains"].items():
+                        $ q_here = [q for q in q_active if q["domain"] == q_dom]
+                        if q_here:
+                            text q_dname size 22 color "#ffd36b"
+                            for q in q_here:
+                                $ q_step = quests.current_step(q, q_ctx)
+                                button:
+                                    background Solid("#1d2333")
+                                    hover_background Solid("#283049")
+                                    xfill True
+                                    padding (16, 12)
+                                    action Function(ph_quest_open, q["id"])
+                                    vbox:
+                                        spacing 4
+                                        text q["title"] size 26 bold True color "#ffffff"
+                                        if q_step:
+                                            text q_step["text"] size 20 color "#c9cfdd" xsize 480
+                                            if q_step["target"]:
+                                                use quest_bar(q_step["current"], q_step["target"])
+                    if q_tasks:
+                        text "Reminders" size 22 color "#ffd36b"
+                        for t in q_tasks:
+                            frame:
+                                background Solid("#1d2333")
+                                xfill True
+                                padding (16, 12)
+                                vbox:
+                                    spacing 4
+                                    text t["title"] size 24 bold True color "#ffffff"
+                                    text t["text"] size 20 color "#e6e9f2" xsize 480
+                                    if t["due"]:
+                                        text ("Due: day %d" % t["due"]) size 18 color "#ffb347"
+                    if q_done:
+                        text "Completed" size 22 color "#8a93a8"
+                        for q in q_done:
+                            text ("- " + q["title"]) size 22 color "#8a93a8"
+
+screen phone_quest_detail(qid, q_ctx):
+    $ qd = mq.quest(qid)
+    $ qd_steps = quests.steps(qd, q_ctx) if qd else []
+    $ qd_cur = quests.current_step(qd, q_ctx) if qd else None
+    viewport:
+        pos (18, 124)
+        xysize (548, 820)
+        mousewheel True
+        draggable True
+        scrollbars "vertical"
+        vbox:
+            spacing 12
+            xfill True
+            text qd["title"] size 32 bold True color "#ffffff" xsize 500
+            if qd.get("summary"):
+                text qd["summary"] size 21 color "#c9cfdd" xsize 500
+            null height 4
+            for st in qd_steps:
+                hbox:
+                    spacing 10
+                    text ("[[x]" if st["done"] else "[[ ]") size 22 color ("#7dffa0" if st["done"] else "#ffd36b")
+                    text st["text"] size 22 color ("#8a93a8" if st["done"] else "#ffffff") xsize 440
+            if qd_cur:
+                null height 6
+                frame:
+                    background Solid("#1d2333")
+                    xfill True
+                    padding (16, 12)
+                    vbox:
+                        spacing 6
+                        text "What to do" size 20 color "#ffd36b"
+                        text qd_cur["hint"] size 21 color "#e6e9f2" xsize 480
+                        if qd_cur["target"]:
+                            use quest_bar(qd_cur["current"], qd_cur["target"])
+            if qd.get("reward", {}).get("money"):
+                text ("Reward: $%d" % qd["reward"]["money"]) size 22 color "#7dffa0"
+
+
+# ------------------------------------------------------------------------------------ Me (numbers and bag)
+screen phone_me():
+    viewport:
+        pos (18, 124)
+        xysize (548, 820)
+        mousewheel True
+        draggable True
+        scrollbars "vertical"
+        vbox:
+            spacing 12
+            xfill True
+            text "Your numbers" size 24 color "#ffd36b"
+            for me_key in ("fitness", "charisma", "intelligence"):
+                frame:
+                    background Solid("#1d2333")
+                    xfill True
+                    padding (16, 10)
+                    vbox:
+                        spacing 4
+                        text player.label(me_key) size 24 color "#ffffff"
+                        use quest_bar(player.get(me_key), 100)
+            null height 6
+            text "Bag" size 24 color "#ffd36b"
+            if not player.bag:
+                text "Nothing yet." size 22 color "#8a93a8"
+            for me_item, me_n in player.bag.items():
+                frame:
+                    background Solid("#1d2333")
+                    xfill True
+                    padding (16, 10)
+                    vbox:
+                        spacing 2
+                        text ("%s%s" % (msh.item(me_item)["name"], (" x%d" % me_n) if me_n > 1 else "")) size 24 color "#ffffff"
+                        text msh.item(me_item).get("text", "") size 18 color "#aab2c8" xsize 480
 
 
 # ------------------------------------------------------------------------------------ Contacts

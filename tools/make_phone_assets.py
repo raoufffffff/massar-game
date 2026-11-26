@@ -165,6 +165,14 @@ def make_icons():
     d.ellipse((44 * k, 28 * k, 80 * k, 64 * k), fill="white")
     d.ellipse((28 * k, 70 * k, 96 * k, 130 * k), fill="white")
     finish_icon(b, S, "contacts")
+    # me (stats and bag: a backpack)
+    b, S = icon_base("#43c6c6", "#1b7f8f")
+    d = ImageDraw.Draw(b)
+    d.arc((42 * k, 14 * k, 82 * k, 54 * k), 180, 360, fill="white", width=6 * k)
+    d.rounded_rectangle((30 * k, 36 * k, 94 * k, 108 * k), 16 * k, fill="white")
+    d.rounded_rectangle((42 * k, 72 * k, 82 * k, 96 * k), 6 * k, outline=hexc("#1b7f8f"), width=4 * k)
+    d.line([(30 * k, 62 * k), (94 * k, 62 * k)], fill=hexc("#1b7f8f"), width=4 * k)
+    finish_icon(b, S, "me")
 
 
 if __name__ == "__main__":

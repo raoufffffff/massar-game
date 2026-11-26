@@ -10,7 +10,7 @@ init 10 python:
     def story_end_of_day(old_day):
         """The clock just passed from Night to the next Morning: review the day that finished."""
         try:
-            store.story.end_of_day(old_day, store.phone)
+            store.story.end_of_day(old_day, store.phone, store.player)
         except Exception:
             import traceback
             traceback.print_exc()
@@ -43,6 +43,7 @@ init 10 python:
     def story_dev_pay_rent():
         ok, text = store.story.pay_rent(store.phone, store.day, store.day_part)
         renpy.notify(text)
+        flush_notes()
 
     def story_dev_gate():
         g = store.story.next_gate()
@@ -51,16 +52,22 @@ init 10 python:
         else:
             store.story.cross_gate(g, store.day, store.day_part)
             renpy.notify("Gate %d crossed (love = %d)." % (g, store.story.love))
+            flush_notes()
 
     def story_dev_log(event):
         store.story.log(event, store.day, store.day_part)
-        renpy.notify("Logged: %s (day %d)" % (event, store.day))
+        notes = store.story.pop_notes()
+        renpy.notify("Logged: %s (day %d)" % (event, store.day) + ("\n" + "\n".join(notes) if notes else ""))
 
     def story_actions(pid, rid):
         """Extra actions the story adds to a room (shown under 'Pass time'): (label, title) pairs."""
         out = []
         if pid == "home" and rid == "kitchen" and not store.story.count("dishes_done", store.day):
             out.append(("act_dishes", "Wash the dishes"))
+        out += store.quests.actions(mq.make_ctx(store.story, store.player, store.phone), pid, rid, "room")
+        shop = msh.shop_at(pid, rid)
+        if shop:
+            out.append(("act_shop", "Shop: " + shop["title"]))
         return out
 
     config.overlay_screens.append("story_dev_keys")
@@ -69,6 +76,7 @@ init 10 python:
 # At the end of the day love +1 (if love < 20); skipping it costs -1 while Ana has fewer than 500 followers.
 label act_dishes:
     $ story.log("dishes_done", day, day_part)
+    $ flush_notes()
     if ana_here:
         if room_w > 1920:
             scene expression room_view_bg()
@@ -93,13 +101,15 @@ screen day_report(rep):
             spacing 12
             text ("Day %d is over" % rep["day"]) size 36 color "#ffffff"
             null height 4
-            if not rep["lines"]:
+            if not rep["lines"] and not rep.get("stat_lines"):
                 text "Nothing special happened between you and Ana." size 24 color "#aab4cc"
             for label, v in rep["lines"]:
                 if rep["show_numbers"] and v:
                     text ("%s   %+d" % (label, v)) size 24 color ("#9be28f" if v > 0 else "#ff8f8f")
                 else:
                     text label size 24 color "#d6dcec"
+            for label, txt in rep.get("stat_lines", []):
+                text ("%s   %s" % (label, txt)) size 24 color "#ff8f8f"
             if rep["show_numbers"]:
                 text ("Ana's love: %d  >  %d" % (rep["love_before"], rep["love_after"])) size 26 color "#ffd36b"
             if rep["capped"]:

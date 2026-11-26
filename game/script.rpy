@@ -19,6 +19,7 @@ label city_loop:
     # the end-of-day report (Ana's love, rent...) is shown once, as soon as the player is back at the map or in a room
     if story.pending:
         call screen day_report(story.pending)
+    $ flush_notes()
     call screen city_map
     if _return == "__back__":
         # Closed the map without travelling: no time passes
@@ -35,6 +36,7 @@ label city_loop:
 label place_loop:
     if story.pending:
         call screen day_report(story.pending)
+    $ flush_notes()
     # Opening hours: when time passes and this place (or room) closes, the player is sent out with a message
     if not mc.place_open(location, day_part):
         $ closed_note = mc.closed_text(location, None, day_part)
@@ -89,11 +91,22 @@ label place_loop:
         # the player pays Ana's rent (only offered on a Monday, see story.rent_due)
         $ rent_ok, rent_text = story.pay_rent(phone, day, day_part)
         $ renpy.notify(rent_text)
+        $ flush_notes()
+        jump place_loop
+    if _return.startswith("__act__quest:"):
+        # an action of a quest step (see game/data/quests.json); costs a slot unless it returns "cancelled"
+        $ quest_ids = _return[13:].split(":")
+        call quest_action(quest_ids[0], int(quest_ids[1]))
+        if _return != "cancelled":
+            $ day, day_part = mc.advance_time(day, day_part)
+            $ time_name = mc.TIME_NAMES[day_part]
         jump place_loop
     if _return.startswith("__act__"):
         # An activity of the room (mini-game): costs one time slot unless it returns "cancelled"
         $ act_label = _return[7:]
         call expression act_label
+        $ player_after_act(act_label)
+        $ flush_notes()
         if _return != "cancelled":
             $ day, day_part = mc.advance_time(day, day_part)
             $ time_name = mc.TIME_NAMES[day_part]
