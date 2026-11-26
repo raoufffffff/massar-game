@@ -307,3 +307,14 @@ Because they do not touch Ana's love, Ana's rules stay simple; they only compete
 poses open (cap at 30). Starting numbers when free play begins: Ana's love 2, player's money 100 USD, Ana's followers 0 (she has no Supernova account yet; it is created when she agrees, love 15).
 Samantha = a university classmate of the player; "Carlos" (racing story) = the player's close friend (Raouf wrote "Chris" once; Chris is the photography mentor - assumed typo, to confirm).
 Open: 100 USD < rent 150 USD and Day 1 is a Monday -> needs a first-week grace (suggested: first rent on the second Monday).
+
+## 13. DECISIONS 2026-11-26 (quests, stats, timing) - agreed with Raouf, NOT built yet except where noted
+- **Quest system (next build, on his "ابدأ")**: phone app "Quests", list grouped by domain (Ana, Snapjob, ...). Opening a quest shows the goal, a progress bar (2/4, 1/3) and a hint that tells the player what to do
+  (e.g. "find Ana and talk to her"). Examples he gave: "complete 3 Snapjob gigs of level 1", "raise Ana's love to 4". Progress is COMPUTED from game state (love, gigs done), no separate counters.
+  Quest = domain, title, text/hint, completion condition, reward, prerequisite; data in `game/data/quests.json` (editor tab later). Ana chain: number quest -> story quest that crosses the gate
+  (cap of daily love = current unfinished story quest). Several domains may be active at once. Completion shows a notification and unlocks the next one. Needs a check that the phone stores completed gigs per level (else add a counter).
+  The Plumber quest needs intelligence > 10, so a minimal player-stats object (fitness 5, charisma 5, intelligence 15 at start) is built in the same batch.
+- **Timing rule**: effects tied to games/actions apply IMMEDIATELY (talk game: Ana love +1, charisma +1/-1; washing dishes: love +1 while love < 20; gym training: fitness +2 on 10 points, +1 on 6-9, 0 on <= 5;
+  a notification shows the change). Penalties apply at END OF DAY: unwashed dishes -1 (Ana followers < 500), unpaid rent -5, fitness -0.5 per day. Charisma never decays. Keep the daily limits (1 talk game per character, 1 dishes) and the gate cap.
+  Plan: each rule in story.json gets `"when": "now" | "end_of_day"`. Quest conditions are checked as soon as a stat changes.
+- **Character panel (LATER, when Raouf gives a mock-up)**: one button opens a screen with the player's stats and each important character (Ana first): picture of her current state, current personality/tier, stats, love points earned. Not built.
