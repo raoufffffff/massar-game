@@ -206,6 +206,74 @@ def inventory(snap, regions):
 # =====================================================================================================
 #  The window
 # =====================================================================================================
+class ScrollNotebook(object):
+    """Stands in for the ttk.Notebook: every tab the builders create (ttk.Frame(nb) ... nb.add(tab, text=...)) lands inside a
+    scrollable area (vertical + horizontal bars, mouse wheel over empty parts), so long tabs can be scrolled on small screens."""
+    _OWN = ("_real", "_cur", "_wrap", "_last_child_ids", "_tk", "_ttk", "_root_w")
+
+    def __init__(self, real, tk, ttk, root):
+        self._real, self._tk, self._ttk = real, tk, ttk
+        self._cur = None
+        self._wrap = {}
+        self._last_child_ids = {}
+        for seq in ("<MouseWheel>", "<Button-4>", "<Button-5>"):
+            root.bind_all(seq, self._wheel, add="+")
+
+    def _begin(self):
+        tk, ttk = self._tk, self._ttk
+        outer = ttk.Frame(self._real)
+        cv = tk.Canvas(outer, highlightthickness=0, bd=0)
+        vs = ttk.Scrollbar(outer, orient="vertical", command=cv.yview)
+        hs = ttk.Scrollbar(outer, orient="horizontal", command=cv.xview)
+        cv.configure(yscrollcommand=vs.set, xscrollcommand=hs.set)
+        hs.pack(side="bottom", fill="x")
+        vs.pack(side="right", fill="y")
+        cv.pack(side="left", fill="both", expand=True)
+        inner = ttk.Frame(cv)
+        win = cv.create_window(0, 0, window=inner, anchor="nw")
+
+        def fit(ev=None):
+            w, h = max(cv.winfo_width(), inner.winfo_reqwidth()), max(cv.winfo_height(), inner.winfo_reqheight())
+            cv.itemconfigure(win, width=w, height=h)
+            cv.configure(scrollregion=(0, 0, w, h))
+        cv.bind("<Configure>", fit)
+        inner.bind("<Configure>", fit)
+        outer._cv = cv
+        self._cur = (outer, inner)
+
+    def __getattr__(self, name):
+        # while a tab is being built, widgets that use this object as their master really live in the scroll area
+        if name in ("_w", "children", "_name", "master", "tk"):
+            if self._cur is None:
+                self._begin()
+            return getattr(self._cur[1], name)
+        return getattr(self._real, name)
+
+    def add(self, child, **kw):
+        outer, inner = self._cur
+        child.pack(fill="both", expand=True)
+        self._real.add(outer, **kw)
+        self._wrap[str(child)] = outer
+        self._cur = None
+
+    def select(self, arg=None):
+        if arg is None:
+            return self._real.select()
+        return self._real.select(self._wrap.get(str(arg), arg))
+
+    def _wheel(self, ev):
+        try:
+            if ev.widget.winfo_class() in ("Canvas", "Listbox", "Treeview", "Text", "TCombobox", "Scale", "TScale"):
+                return
+            cur = self._real.nametowidget(self._real.select())
+            if not hasattr(cur, "_cv") or not str(ev.widget).startswith(str(cur)):
+                return
+            up = getattr(ev, "delta", 0) > 0 or getattr(ev, "num", 0) == 4
+            cur._cv.yview_scroll(-3 if up else 3, "units")
+        except Exception:                                    # noqa: BLE001
+            pass
+
+
 def run_gui():
     import tkinter as tk
     from tkinter import ttk, messagebox, simpledialog
@@ -263,8 +331,9 @@ def run_gui():
     ttk.Button(top, text="Save  (Ctrl+S)", command=save_all).pack(side="left")
     ttk.Label(top, textvariable=status).pack(side="left", padx=14)
 
-    nb = ttk.Notebook(root)
-    nb.pack(fill="both", expand=True, padx=8, pady=(0, 8))
+    nb_real = ttk.Notebook(root)
+    nb = ScrollNotebook(nb_real, tk, ttk, root)
+    nb_real.pack(fill="both", expand=True, padx=8, pady=(0, 8))
 
     def load_image(path, size=None):
         if not os.path.exists(path):

@@ -897,7 +897,7 @@ def build_tab(ctx):
         """Keyboard shortcuts work only while the Schedule tab is open."""
         def h(ev):
             try:
-                if nb.select() == str(tab):
+                if tab.winfo_ismapped():
                     fn()
             except Exception:                                # noqa: BLE001
                 pass

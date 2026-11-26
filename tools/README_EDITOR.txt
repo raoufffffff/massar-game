@@ -172,3 +172,5 @@ QUESTS, SHOPS AND THE PLAYER'S NUMBERS (version 1)
   game/data/player.json: starting numbers (fitness 5, charisma 5, intelligence 15), gym points -> fitness, charisma after a talk game, daily fading.
   game/data/story.json: every daily rule has "when": "now" (applied at once) or "end_of_day" (in the day report).
   Check all of it without starting the game:  python tools/test_quests.py
+
+SCROLLING: every tab scrolls (bars on the right and bottom; the mouse wheel works over empty parts of a tab). On a small screen drag the bars or use the wheel.
