@@ -203,6 +203,7 @@ Other scripts in `tools/` generate art/placeholder assets (`make_*.py`, `key_spr
 4. Ideas parked: followers/Supernova tied to posting Ana photos, photography XP affecting steadiness/zoom/reach, Snapjob
    levels unlocked by followers, darkness at night lowering sharpness, Ana's appearance stages (2 for now),
    mood-based schedule choice, Supabase-fed content.
+Parked idea (2026-11-27): racing side story (cars or motorbikes) as a 2D side-scrolling mini-game reusing the runner; races as data in JSON; needs vehicle + looping background art from Raouf. Talk about it later.
 Open art items: Warrior II crop, f0 start-fail image, yoga start pose sneakers, run frames/backgrounds/obstacles, yoga background.
 
 ## 8. DRAFT (planning only, NOT built): Ana's state and what it drives
