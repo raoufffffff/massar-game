@@ -34,7 +34,7 @@ saves/cache. Not in the repo / not known to Claude: his "game bible" (one .md pe
 
 **Art rule (Raouf, 2026-11-27).** The game is NOT built on suggestive pictures; its base is the mini-games. Ana's stages change her stance, clothes style, voice and confidence,
 not the level of exposure. Keep realistic body proportions, normal/elegant clothes (closed shirt, suits, dresses), eye-level camera, focus on face and expression.
-The old "corruption" meter is now the **FAME meter** (`fame`, 0-99; decided 2026-11-27): it changes Ana's PERSONALITY and CLOTHES (and stance/voice) only. No `corruption` name anywhere, code or UI. Quick test: could the picture run as an ad on Facebook/Google? If not, it is too far.
+The old "corruption" meter is now the **CONFIDENCE meter** (`confidence`, "self-confidence", 0-99; decided 2026-11-27). Only the NAME changed (to avoid a bad impression); its function and rise rules stay as designed in section 8. It drives Ana's personality, clothes, stance, voice and the style of her photos. No `corruption` or `fame` name anywhere, code or UI. Quick test: could the picture run as an ad on Facebook/Google? If not, it is too far.
 
 ## 3. Layout
 ```
@@ -199,23 +199,23 @@ Other scripts in `tools/` generate art/placeholder assets (`make_*.py`, `key_spr
 Open art items: Warrior II crop, f0 start-fail image, yoga start pose sneakers, run frames/backgrounds/obstacles, yoga background.
 
 ## 8. DRAFT (planning only, NOT built): Ana's state and what it drives
-(2026-11-27: the old corruption meter was renamed FAME; tier keys below are internal labels only, rename freely.)
+(2026-11-27: the old corruption meter was renamed CONFIDENCE; tier keys below are internal labels only, rename freely.)
 Raouf's design, 2026-11-25. Do not build until he says so; Part 1 (chapter 1) comes first, start small
-(fame + current stage only), add the rest one by one.
+(confidence + current stage only), add the rest one by one.
 
 Ana's state record (one place; everything else reads it, nothing recomputes):
-- Numbers: fame (0-99, formerly corruption/liberation), fitness, love, mood, followers. Mood = computed daily from the player's
+- Numbers: confidence (0-99, formerly corruption/liberation), fitness, love, mood, followers. Mood = computed daily from the player's
   actions plus a little randomness (not pure random). Followers = derived from published photos (not a free number).
 - Labels: current stage/path (chapter 1, Supernova week, ...), most-attracted-to (1st), second most-attracted-to,
   her photographer, her manager.
 
 | Output | Inputs |
 |---|---|
-| Where she appears | fame, stage |
-| Her photo poses | fame, place, mood, stage |
-| How she talks to the player | love, fame, mood |
+| Where she appears | confidence, stage |
+| Her photo poses | confidence, place, mood, stage |
+| How she talks to the player | love, confidence, mood |
 | Who she appears with | 1st and 2nd attraction, stage, photographer |
-| Her Supernova photos/stories (when the player is not her photographer) | fame, 1st and 2nd attraction |
+| Her Supernova photos/stories (when the player is not her photographer) | confidence, 1st and 2nd attraction |
 | Follower growth | fitness + current followers always; plus the player's photos if he shoots her; otherwise only those two |
 
 Corruption phases (CONFIRMED thresholds, 2026-11-25; max 100; tier names are the keys for pictures/expressions/dialogue/schedule):
@@ -262,7 +262,7 @@ After love 25 (up to 75, mandatory story path) love no longer rises with talk ga
 (different from talk games). Love up to 75 is forced by the quests.
 
 **Open questions**: what happens at the barrier numbers exactly (stops at 4/14/24 and quest sets 5/15/25?); starting love after the 6-month
-narrative; whether talk game / dishes take a time slot (4 slots per day); is complimenting in the talk game also raising fame (his 0-24 note);
+narrative; whether talk game / dishes take a time slot (4 slots per day); is complimenting in the talk game also raising confidence (his 0-24 note);
 what happens to the dishes penalty when the player is away all day (suggested: excused); how the chapter ends and what the Snapjob lesson with Chris looks like.
 
 **Update 2026-11-25 (later): rent, eviction, money, requests, loneliness, time.**
@@ -312,7 +312,7 @@ first-Monday grace, how Chris's lesson/chapter end go, what the barrier numbers 
 may make the relationship feel like chores; keep all numbers editable. Ana must keep her own arc and motives (not a reward).
 
 ## 12. SCOPE OF VERSION 1 (decided by Raouf 2026-11-25) - supersedes the slice in section 11 where they differ
-IN: chapter 1 only, Ana's love 0-30 only; her fame never passes 30, so only TWO Ana poses/looks (shy_housewife 0-24, mature_woman 25-30);
+IN: chapter 1 only, Ana's love 0-30 only; her confidence never passes 30, so only TWO Ana poses/looks (shy_housewife 0-24, mature_woman 25-30);
 only 3 side stories, built from conversations with Ana (not deep); the goal is a SMOOTH, SUSTAINABLE play experience.
 OUT (future): rivals and their system (defense games, loneliness meter from 40, requests, discovery), the player working as photographer for other models.
 Consequence: love barriers 5, 15, 25 and the end of the chapter around 30; rent/dishes/talk game/Snapjob/Supernova-for-Ana stay in; everything from love 40 up stays in the drafts (sections 9-10) untouched.
