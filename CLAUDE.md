@@ -347,3 +347,11 @@ Open: 100 USD < rent 150 USD and Day 1 is a Monday -> needs a first-week grace (
   Plan: each rule in story.json gets `"when": "now" | "end_of_day"`. Quest conditions are checked as soon as a stat changes.
 - **Shops**: Raouf wants places in the mall (General Store first) where the player buys things; later each shop he describes (some are jobs, some sell special things, sellers are characters). Data-driven (shops.json).
 - **Character panel (LATER, when Raouf gives a mock-up)**: one button opens a screen with the player's stats and each important character (Ana first): picture of her current state, current personality/tier, stats, love points earned. Not built.
+
+## 14. DECISIONS 2026-11-27 (gate 15 = money quest + Supernova start) - agreed with Raouf, NOT built yet (wait for "ابدأ")
+Replaces the earlier idea of a photo-of-dishes challenge for gate 15; the gate-15 quest is a STORY about money, tied to photography:
+- Ana is seen selling furniture; she asks the player to help photograph her JEWELRY (to sell it). He asks why: she needs money, she has debts. How much? She is short **$1000**.
+- The challenge: the player must raise $1000 himself and give it to her. When done she asks how he got it; he says he works as a photographer ("Snapjob"). She sighs: "I wish I could do something like that."
+  He says: "what if you became an influencer?" She laughs, "I am not qualified for that, but maybe I will try" -> she opens a **Supernova account** (gate 15 crossed, love = 15, she now agrees to be photographed).
+- After that: every day, after a talk game that was WON, a new choice appears: suggest taking her photo. He takes it (camera) and posts it on Supernova (one post a day). This raises love up to **24** (gate 25 is the next story quest).
+- Notes to settle when building: money sink vs rent/Snapjob rewards (suggest she repays later from Supernova earnings = the 50 % share rule); is the jewelry shoot a small camera step or only narrative; love per post and how the photo rating affects followers; deadline for her debts (suggest none).
