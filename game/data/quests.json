@@ -31,6 +31,25 @@
       "reward": {"gate": 5, "message": "Ana is grateful. Something has changed between you."}
     },
     {
+      "id": "ana_money", "domain": "ana", "title": "A Thousand Dollars", "requires": ["ana_plumber"],
+      "summary": "Ana is selling her furniture. Something is wrong, and she is too proud to say it.",
+      "steps": [
+        {"text": "Raise Ana's love to 14",
+         "hint": "Talk games and washing the dishes bring you closer. Keep going every day.",
+         "if": {"love_gte": 14}},
+        {"text": "Find out why Ana is selling her things",
+         "hint": "Look for Ana at home and ask her about the furniture.",
+         "if": {"flag": "money_asked"},
+         "action": {"who": "ana", "place": "home", "title": "Ask about the furniture", "label": "quest_money_ask", "flag": "money_asked", "time": 0}},
+        {"text": "Get $1000 and give it to Ana",
+         "hint": "Earn the money (Snapjob gigs pay well). When you have $1000, talk to Ana: the choice to give it to her appears.",
+         "if": {"flag": "money_given"},
+         "action": {"who": "ana", "title": "Give Ana $1000", "label": "quest_money_give", "flag": "money_given", "time": 0,
+                    "show": {"money_gte": 1000}}}
+      ],
+      "reward": {"gate": 15, "message": "Ana opens a Supernova account. From now on she may let you take her photo when she is in a good mood."}
+    },
+    {
       "id": "snap_first", "domain": "snapjob", "title": "First steps in photography",
       "summary": "Snapjob clients pay for simple photos. Start with the easy gigs.",
       "steps": [

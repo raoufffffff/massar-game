@@ -86,6 +86,14 @@ label place_loop:
             # the talk game takes one time slot (win or lose)
             $ day, day_part = mc.advance_time(day, day_part)
             $ time_name = mc.TIME_NAMES[day_part]
+        elif _return == "talkgame_photo":
+            # a won talk game, then she agreed to a photo: the talk takes a slot, the session another
+            $ day, day_part = mc.advance_time(day, day_part)
+            $ time_name = mc.TIME_NAMES[day_part]
+            call photo_session_ana
+            if _return != "cancelled":
+                $ day, day_part = mc.advance_time(day, day_part)
+                $ time_name = mc.TIME_NAMES[day_part]
         jump place_loop
     if _return == "__rent__":
         # the player pays Ana's rent (only offered on a Monday, see story.rent_due)

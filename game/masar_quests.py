@@ -6,7 +6,8 @@ A quest has STEPS; each step has a condition ("if") that is computed from the ga
 The quest is complete when all its steps are true.  The first step that is not true yet is the CURRENT step:
 its text and hint are what the player reads in the phone, and its optional "action" appears in the game:
     action: {who: "ana" | "room", place, room, title, label (a Ren'Py scene), flag (set when the scene ends),
-             time (slots it costs, default 1), needs (conditions to try it), fail_text}
+             time (slots it costs, default 1), needs (conditions to try it), fail_text,
+             show (conditions for the choice to appear at all); place / room may be left out = anywhere}
     "ana" = an extra choice when clicking Ana in that room;  "room" = a button under "Pass time".
 Reward of a quest: gate (a love gate is crossed), money, message.  Quests may have "requires": [quest ids].
 """
@@ -115,7 +116,8 @@ class Quests(object):
         for q in self.active():
             s = self.current_step(q, ctx)
             a = s["action"] if s else None
-            if a and a.get("who", "room") == who and a.get("place") == place and a.get("room") == room:
+            if a and a.get("who", "room") == who and a.get("place") in (None, place) and a.get("room") in (None, room) \
+                    and evaluate(a.get("show"), ctx, self.flags, self.done)[0]:
                 out.append(("quest:%s:%d" % (q["id"], s["index"]), a.get("title", s["text"])))
         return out
 

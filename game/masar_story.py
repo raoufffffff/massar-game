@@ -150,6 +150,10 @@ class Story(object):
             self.log("talk_game" if who == "ana" else "talk_game_" + who, day, part, who=who)
 
     # ------------------------------------------------------------------ gates and caps
+    def photo_unlocked(self):
+        """Ana agrees to be photographed once the gate 15 quest is done (she opened her Supernova account)."""
+        return 15 in self.gates_crossed
+
     def next_gate(self):
         """The first gate that was not crossed yet (None if there is none)."""
         for g in sorted(rules()["gates"]):

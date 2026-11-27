@@ -101,6 +101,25 @@ n = qs.check(fn, st, ph, 2, 1)
 check("plumber done: gate 5 crossed, love 5", "ana_plumber" in qs.done and 5 in st.gates_crossed and st.love == 5)
 check("reward message shown", any("grateful" in x for x in n))
 
+# ---- gate 15: A Thousand Dollars
+n = qs.check(fn, st, ph, 3, 1)
+check("the money quest is announced after the plumber", "ana_money" in [q["id"] for q in qs.active()])
+st.love = 14
+check("love 14 is the first step, then the Ana question appears at home", qs.actions(fn(), "home", "living", "ana") == [("quest:ana_money:1", "Ask about the furniture")])
+check("... in any room of the house", qs.actions(fn(), "home", "kitchen", "ana") != [] and qs.actions(fn(), "park", "lake", "ana") == [])
+qs.set_flag(qs.action_of("ana_money", 1)["flag"])
+ph.money = 999
+check("giving the money is hidden under $1000", qs.actions(fn(), "home", "living", "ana") == [])
+ph.money = 1000
+check("with $1000 the choice appears anywhere", qs.actions(fn(), "park", "lake", "ana") == [("quest:ana_money:2", "Give Ana $1000")])
+check("the photo choice stays closed until gate 15", not st.photo_unlocked())
+assert ph.spend(1000, "Money for Ana", 4, 0)
+qs.set_flag(qs.action_of("ana_money", 2)["flag"])
+n = qs.check(fn, st, ph, 4, 0)
+check("gate 15 crossed, love 15, photo choice unlocked", "ana_money" in qs.done and 15 in st.gates_crossed and st.love == 15 and st.photo_unlocked())
+
+check("the cap is now 24", st.cap() == 24)
+
 # ---- snapjob quest counted from gigs
 gigs = [g for g in mph.GIGS if g.get("level", 1) == 1][:3]
 for i, g in enumerate(gigs):

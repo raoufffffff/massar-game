@@ -124,7 +124,7 @@ label ana_click:
     with dissolve
     $ ana_greet = mc.ana_greeting(day, day_part, location, room, ana_clicks)
     ana "[ana_greet]"
-    # The photo option only exists where a photo scene exists for this place
+    # (the photo choice is offered after a won talk game once gate 15 is crossed: ana_photo_offer)
     $ pose_opts = mp.poses_here(location, room, ana_available_poses())
     # a quest may add one choice here (e.g. "Is something wrong?")
     $ qa_choice = quest_ana_option()
@@ -139,27 +139,46 @@ label ana_click:
             return "talk"
         "Have a real conversation (talk game)" if not story.talked_today("ana", day):
             call talk_game("ana")
+            # after gate 15, a WON talk game puts her in a good mood: she may allow a photo
+            if talk_s.success and story.photo_unlocked():
+                call ana_photo_offer(pose_opts)
+                if _return == "photo":
+                    return "talkgame_photo"
             return "talkgame"
-        "Can I take your photo?" if pose_opts:
-            if not pose_opts:
-                show ana neutral
-                ana "Not here, sorry. Maybe somewhere else in the house?"
-                return "none"
+        "Never mind.":
+            ana "Okay. See you around."
+            return "none"
+
+
+# After a won talk game (gate 15 crossed): Ana is in a good mood and may allow a photo.  Returns "photo" or "none".
+label ana_photo_offer(opts):
+    if not opts:
+        return "none"
+    if room_w > 1920:
+        scene expression room_view_bg()
+    else:
+        scene expression room_bg(location, room)
+    show ana smile at ana_pos
+    with dissolve
+    ana "That was a lovely talk. I am in a good mood today."
+    menu:
+        "Ana, can I take your photo?":
             show ana shy
             ana "Sure... but please don't make me look silly."
-            if len(pose_opts) > 1:
+            if len(opts) > 1:
                 ana "What do you have in mind?"
-                $ pose_pick = renpy.display_menu([(t, p) for p, t in pose_opts] + [("Never mind.", None)])
+                $ pose_pick = renpy.display_menu([(t, p) for p, t in opts] + [("Never mind.", None)])
                 if pose_pick is None:
                     show ana neutral
                     ana "Okay. Another time."
                     return "none"
             else:
-                $ pose_pick = pose_opts[0][0]
+                $ pose_pick = opts[0][0]
             if pose_pick != ana_pose_name:
                 ana "Give me a second to get ready."
             $ ana_pose_name = pose_pick
             return "photo"
-        "Never mind.":
-            ana "Okay. See you around."
+        "Not now.":
+            show ana neutral
+            ana "Okay. Another time."
             return "none"

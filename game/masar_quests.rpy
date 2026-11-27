@@ -112,6 +112,46 @@ label quest_plumber_fix:
     hide ana
     return
 
+# --- A Thousand Dollars (quest ana_money, gate 15): plain dialogue over the existing room picture
+label quest_money_ask:
+    show ana sad at ana_pos
+    "There are price tags on the chairs and a half-empty shelf in the hall. Ana is wrapping a vase in newspaper."
+    ana "Oh, it is you. Yes... I am selling a few things. The house is too big for one person anyway."
+    show ana neutral
+    ana "Actually, you have that camera. Could you help me photograph my jewelry? Buyers want clear pictures."
+    you "Your jewelry? Ana, why would you sell your jewelry?"
+    show ana sad
+    ana "I did not want to tell you. I have debts, dear. My ex-husband left me with more than a broken marriage."
+    you "How much do you need?"
+    ana "A thousand dollars. I am short by a thousand dollars. It is silly, I will find a way."
+    "You help her lay the rings and necklaces on a white cloth and take a few simple pictures. She does not say much, but she keeps glancing at you."
+    you "(A thousand dollars... I do not have it. But maybe I can find it.)"
+    hide ana
+    return
+
+label quest_money_give:
+    if not phone.spend(1000, "Money for Ana", day, day_part):
+        "You do not have enough money."
+        return "abort"
+    show ana neutral at ana_pos
+    "You put the money in an envelope and hold it out to her."
+    you "Ana. This is for you. A thousand dollars."
+    show ana surprised
+    ana "What? Where did you... I cannot take this!"
+    you "Please. You would do the same for me."
+    show ana shy
+    ana "Thank you. I do not know what to say. How did you get so much money?"
+    you "I work as a photographer now. People pay for photos through an app called Snapjob."
+    show ana smile
+    ana "A photographer. I wish I could do something like that."
+    you "What if you became an influencer? There is a platform called Supernova. People love warm, real people."
+    ana "Me? An influencer? I am not qualified for that."
+    you "You could try."
+    ana "...Maybe I will. Maybe I will try."
+    ana "And if I am in a good mood, you may take my picture. Just do not make me look silly."
+    hide ana
+    return
+
 # --- shops: a room with an entry in game/data/shops.json shows the action "Shop"
 label act_shop:
     $ shop_def = mshop.shop_at(location, room)
