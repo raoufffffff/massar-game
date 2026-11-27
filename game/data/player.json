@@ -1,5 +1,5 @@
 {
-  "start": {"fitness": 5, "charisma": 5, "intelligence": 15},
+  "start": {"fitness": 5, "charisma": 5, "intelligence": 30},
   "max": 100,
   "labels": {"fitness": "Fitness", "charisma": "Charisma", "intelligence": "Intelligence"},
   "daily_decay": {"fitness": 0.5},

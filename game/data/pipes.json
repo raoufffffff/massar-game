@@ -1,0 +1,95 @@
+{
+ "games": {
+  "kitchen": {
+   "title": "Fix the kitchen pipes",
+   "bg": "images/pipes/kitchen_bg.jpg",
+   "tray": {
+    "x": 1390,
+    "y": 400,
+    "w": 490,
+    "h": 620,
+    "zoom": 0.62
+   },
+   "pieces": [
+    {
+     "id": "h0",
+     "image": "images/pipes/kitchen_h0.png",
+     "shadow": "images/pipes/kitchen_h0_sh.png",
+     "x": 469,
+     "y": 696,
+     "w": 113,
+     "h": 149,
+     "tray": [
+      1390,
+      400
+     ]
+    },
+    {
+     "id": "e1",
+     "image": "images/pipes/kitchen_e1.png",
+     "shadow": "images/pipes/kitchen_e1_sh.png",
+     "x": 581,
+     "y": 554,
+     "w": 273,
+     "h": 290,
+     "tray": [
+      1482,
+      400
+     ]
+    },
+    {
+     "id": "v",
+     "image": "images/pipes/kitchen_v.png",
+     "shadow": "images/pipes/kitchen_v_sh.png",
+     "x": 707,
+     "y": 449,
+     "w": 153,
+     "h": 105,
+     "tray": [
+      1673,
+      400
+     ]
+    },
+    {
+     "id": "e2",
+     "image": "images/pipes/kitchen_e2.png",
+     "shadow": "images/pipes/kitchen_e2_sh.png",
+     "x": 708,
+     "y": 163,
+     "w": 273,
+     "h": 286,
+     "tray": [
+      1390,
+      602
+     ]
+    },
+    {
+     "id": "valve",
+     "image": "images/pipes/kitchen_valve.png",
+     "shadow": "images/pipes/kitchen_valve_sh.png",
+     "x": 980,
+     "y": 61,
+     "w": 341,
+     "h": 253,
+     "tray": [
+      1581,
+      602
+     ]
+    },
+    {
+     "id": "h1",
+     "image": "images/pipes/kitchen_h1.png",
+     "shadow": "images/pipes/kitchen_h1_sh.png",
+     "x": 1321,
+     "y": 162,
+     "w": 132,
+     "h": 149,
+     "tray": [
+      1390,
+      801
+     ]
+    }
+   ]
+  }
+ }
+}

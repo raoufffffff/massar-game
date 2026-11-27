@@ -69,6 +69,10 @@ label quest_action(qid, idx):
         return "cancelled"
     if qa.get("label") and renpy.has_label(qa["label"]):
         call expression qa["label"]
+        if _return == "abort":
+            # the player left a mini-game unfinished: no flag, no time passes, he can come back later
+            $ flush_notes()
+            return "cancelled"
     if qa.get("flag"):
         $ quests.set_flag(qa["flag"])
     $ flush_notes()
@@ -88,8 +92,15 @@ label quest_plumber_ask:
     return
 
 label quest_plumber_fix:
+    scene expression "images/pipes/kitchen_problem.jpg" with dissolve
+    "You kneel in front of the open cabinet with your new toolkit. The pipe is cut open and water drips onto the floor."
+    "You lay the pieces out. Each one fits in exactly one place."
+    call minigame_pipes("kitchen")
+    if _return != "done":
+        "You put the pieces back in the bag. You can finish it later."
+        return "abort"
     scene black with dissolve
-    "You lie under the sink with your new toolkit. It is harder than you thought, but slowly the leak stops."
+    "It took patience, but the pipe is whole again and the leak stops."
     if room_w > 1920:
         scene expression room_view_bg() with dissolve
     else:

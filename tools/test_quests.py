@@ -41,7 +41,7 @@ check("no dishes: penalty only at the end of the day", rep["delta"] == -1 and st
 
 # ---- player
 p = mpl.Player()
-check("start numbers 5/5/15", (p.get("fitness"), p.get("charisma"), p.get("intelligence")) == (5, 5, 15))
+check("start numbers 5/5/30", (p.get("fitness"), p.get("charisma"), p.get("intelligence")) == (5, 5, 30))
 check("training 10 points = +2", p.training(10) == "Fitness +2" and p.get("fitness") == 7)
 check("training 7 points = +1", p.training(7) == "Fitness +1")
 check("training 5 points = 0", p.training(5) == "" and p.get("fitness") == 8)
