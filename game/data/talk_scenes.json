@@ -1,13 +1,37 @@
 {
-  "default": "home/kitchen",
-  "scenes": {
-    "home/kitchen": {
-      "title": "Kitchen table",
-      "images": {
-        "neutral": "images/talk/kitchen_neutral.jpg",
-        "smile": "images/talk/kitchen_smile.jpg",
-        "annoyed": "images/talk/kitchen_annoyed.jpg"
-      }
-    }
+ "default": "home/kitchen",
+ "scenes": {
+  "home/kitchen": {
+   "title": "Kitchen table",
+   "images": {
+    "neutral": "images/talk/kitchen_neutral.jpg",
+    "smile": "images/talk/kitchen_smile.jpg",
+    "annoyed": "images/talk/kitchen_annoyed.jpg"
+   }
+  },
+  "home/living": {
+   "title": "Living room sofa",
+   "images": {
+    "neutral": "images/talk/living_neutral.jpg",
+    "smile": "images/talk/living_smile.jpg",
+    "annoyed": "images/talk/living_annoyed.jpg"
+   }
+  },
+  "home/ana_door": {
+   "title": "Upstairs hallway",
+   "images": {
+    "neutral": "images/talk/living_neutral.jpg",
+    "smile": "images/talk/living_smile.jpg",
+    "annoyed": "images/talk/living_annoyed.jpg"
+   }
+  },
+  "park/lake": {
+   "title": "Bench by the lake",
+   "images": {
+    "neutral": "images/talk/garden_neutral.jpg",
+    "smile": "images/talk/garden_smile.jpg",
+    "annoyed": "images/talk/garden_annoyed.jpg"
+   }
   }
+ }
 }

@@ -63,7 +63,14 @@ check("same day = same conversations", [c["ana"] for c in mt.TalkSession("ana", 
 check("every conversation has all four texts", all(all(c.get(k) for k in ("ana", "you", "win", "fail")) for c in mt.rules()["conversations"]["ana"]))
 sc = mt.scene_for("home", "kitchen")
 check("kitchen scene with 3 pictures", sc and set(sc["images"]) >= {"neutral", "smile", "annoyed"})
-check("other rooms use the default scene", mt.scene_for("home", "living") == sc)
+check("rooms without a scene use the default", mt.scene_for("home", "bathroom") == sc)
+lv = mt.scene_for("home", "living")
+check("living room has its own scene", lv and lv != sc and "living_" in lv["images"]["neutral"])
+check("upstairs hallway reuses the living scene", mt.scene_for("home", "ana_door")["images"] == lv["images"])
+gd = mt.scene_for("park", "lake")
+check("lake bench scene", gd and "garden_" in gd["images"]["smile"])
+import os as _os
+check("all scene pictures exist", all(_os.path.exists(_os.path.join("game", v)) for sc_ in mt.scenes()["scenes"].values() for v in sc_["images"].values()))
 check("scene falls back when pictures are missing", mt.scene_for("home", "kitchen", lambda p: False) is None)
 import json  # noqa: E402
 for k, path in sc["images"].items():
