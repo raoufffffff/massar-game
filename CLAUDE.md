@@ -32,6 +32,10 @@ it must attach the repo with push access (`add_repo`, access "push"). `.gitignor
 saves/cache. Not in the repo / not known to Claude: his "game bible" (one .md per character), his chat decisions that are not written here, and whether any
 `.rpy` change really runs (no Ren'Py in the sandbox - he reports tracebacks). When something here and the code disagree, trust the code and fix this file.
 
+**Art rule (Raouf, 2026-11-27).** The game is NOT built on suggestive pictures; its base is the mini-games. Ana's stages change her stance, clothes style, voice and confidence,
+not the level of exposure. Keep realistic body proportions, normal/elegant clothes (closed shirt, suits, dresses), eye-level camera, focus on face and expression.
+Visible stage names should be soft ("confidence", "fame"); `corruption` stays an internal key only. Quick test: could the picture run as an ad on Facebook/Google? If not, it is too far.
+
 ## 3. Layout
 ```
 game/                    Ren'Py project (scripts, images, data)
