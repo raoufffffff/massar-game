@@ -370,3 +370,4 @@ Further answers (2026-11-27): giving Ana the money DEDUCTS $1000 from the player
   - Profile.
 - The two accounts differ in: profile page, messages, and an earnings page (only Ana's account has earnings; 50 % share rule applies).
 - Open: build order suggested (tab bar + account chooser + profile + add photo for Ana first; messages and feed later); messages as JSON data with reply options and effects; earnings in the end-of-day report.
+Clarification (2026-11-28): the player can enter Supernova with HIS OWN account (from the start) and post ANY photo from his gallery there. Ana's account opens only after gate 15 and takes only Ana's photos. Photographing Ana stays gated as built: love >= 15 (gate 15 crossed) AND the choice appears only after a WON talk game, so Ana photos only exist after that.
