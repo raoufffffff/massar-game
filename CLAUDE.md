@@ -359,3 +359,14 @@ Replaces the earlier idea of a photo-of-dishes challenge for gate 15; the gate-1
 
 **Update 2026-11-27 (later) - gate 15 answers from Raouf:** the talk scenes of this quest are plain sequential dialogue over the existing pictures (no new art). After love 15 the Supernova app lets the player upload ONLY Ana's photos. Love rises on each WON talk game (not per shot); a won talk game also offers the "take her photo" choice (she is in a good mood and allows it). No debt deadline. When the player's money is > $1000 and he talks to Ana, the option "Give her the money ($1000)" appears (this is how the quest completes).
 Further answers (2026-11-27): giving Ana the money DEDUCTS $1000 from the player's money (no repayment for now). Do NOT build the Supernova system yet (no app, no posting, no followers). For now the "Can I take your photo?" choice in `ana_click` is switched OFF; it comes back only after love >= 15, and then only as a choice offered after a WON talk game. Love climbs fast anyway (dishes +1 while love < 20, talk game +1), so 15 -> 24 is short.
+
+## 15. DESIGN 2026-11-27/28 (Supernova app) - explained by Raouf, NOT built (wait for "ابدأ")
+- Supernova = an Instagram-like phone app, PURPLE identity (own icon/layout, not a copy). Opening it zooms the screen so everything is big and clear.
+- Entering the app, the player first CHOOSES which account to open. After gate 15 he has TWO accounts: his own (photographer) and Ana's (influencer).
+- Bottom tab bar (like Instagram): Feed, Add photo (+), Messages, Profile.
+  - Feed: all other influencers and minor game characters and their posts (world feels alive; hint future side stories). Data-driven (JSON).
+  - Add photo: the player can post Ana's photos on HER account to grow her followers; later (future topic) he can post his own best photos on HIS account.
+  - Messages: read and reply; the two accounts get different kinds of messages (his = photographer jobs/offers, hers = influencer offers/sponsors).
+  - Profile.
+- The two accounts differ in: profile page, messages, and an earnings page (only Ana's account has earnings; 50 % share rule applies).
+- Open: build order suggested (tab bar + account chooser + profile + add photo for Ana first; messages and feed later); messages as JSON data with reply options and effects; earnings in the end-of-day report.
