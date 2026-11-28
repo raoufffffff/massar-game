@@ -1,0 +1,11 @@
+{
+  "accounts": {
+    "me":  {"title": "Your account",  "name": "You",  "handle": "@you", "bio": "Photographer. Still learning.",
+            "per_day": 3, "followers_per_point": 0.2,  "accepts": "any"},
+    "ana": {"title": "Ana's account", "name": "Ana",  "handle": "@ana.cooks", "bio": "Home cooking, small joys.",
+            "per_day": 1, "followers_per_point": 0.8,  "accepts": "ana", "needs_gate": 15,
+            "locked_text": "Ana has no Supernova account yet."}
+  },
+  "likes_per_follower": 0.12,
+  "note": "A post's quality (0-100) is the Ana rating x10 (Ana photos) or the match % (other photos). followers gained = quality x followers_per_point (rounded, at least 1). All numbers can be edited here."
+}

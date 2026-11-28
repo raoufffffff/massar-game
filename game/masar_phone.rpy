@@ -1,4 +1,4 @@
-# The phone: messages, bank, tasks, contacts, gallery, Supernova (empty for now) and Snapjob (photo gigs).
+# The phone: messages, bank, tasks, contacts, gallery, Supernova (masar_supernova.rpy) and Snapjob (photo gigs).
 # Rules and data live in masar_phone.py - this file is only the screens.
 # The phone is free to use (no time passes). Open it with the phone button (bottom left) or the P key.
 
@@ -31,9 +31,11 @@ init python:
         store.ph_gig_id = None
         store.ph_quest_id = None
         store.ph_result = None
+        store.sn_account = None
 
     def ph_open(app):
         store.ph_app = app
+        store.sn_account = None
         store.ph_view = "list"
         store.ph_photo_id = None
         store.ph_gig_id = None
@@ -55,6 +57,9 @@ init python:
 
     def ph_back():
         """One step back; from the first page of an app, to the home screen."""
+        if store.ph_app == "supernova" and store.sn_account is not None:
+            sn_leave()                      # from an account back to the account chooser
+            return
         v = store.ph_view
         if v in ("confirm", "pick"):
             store.ph_view = "detail"
@@ -221,7 +226,6 @@ screen phone():
                 use phone_header("Snapjob")
                 use phone_snapjob
             elif ph_app == "supernova":
-                use phone_header("Supernova")
                 use phone_supernova
             elif ph_app == "bank":
                 use phone_header("Bank")
@@ -548,17 +552,6 @@ screen phone_contacts():
                     text ph_ci[0] size 28 bold True color "#ffffff"
                     text ph_ci[1] size 20 color "#8a93a8"
         text "More contacts will appear as you meet people." size 20 color "#6f7890" xsize 520
-
-
-# ------------------------------------------------------------------------------------ Supernova (empty for now)
-screen phone_supernova():
-    vbox:
-        align (0.5, 0.4)
-        spacing 14
-        add "images/ui/phone_app_supernova.png" xalign 0.5
-        text "Supernova" font NAV_FONT size 44 color "#ffffff" xalign 0.5
-        text "Your page is not set up yet." size 24 color "#aab2c8" xalign 0.5
-        text "Coming soon." size 22 color "#8a93a8" xalign 0.5
 
 
 # ------------------------------------------------------------------------------------ Gallery
