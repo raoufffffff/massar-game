@@ -373,3 +373,14 @@ Further answers (2026-11-27): giving Ana the money DEDUCTS $1000 from the player
 - The two accounts differ in: profile page, messages, and an earnings page (only Ana's account has earnings; 50 % share rule applies).
 - Open: build order suggested (tab bar + account chooser + profile + add photo for Ana first; messages and feed later); messages as JSON data with reply options and effects; earnings in the end-of-day report.
 Clarification (2026-11-28): the player can enter Supernova with HIS OWN account (from the start) and post ANY photo from his gallery there. Ana's account opens only after gate 15 and takes only Ana's photos. Photographing Ana stays gated as built: love >= 15 (gate 15 crossed) AND the choice appears only after a WON talk game, so Ana photos only exist after that.
+
+## 16. DESIGN 2026-11-28 (photo score -> followers/likes/earnings) - Raouf explaining, NOT built (wait for "ابدأ")
+Re-studying the economy. A perfect photo = **20 points**. Likes of a perfect photo ~ a huge multiple of Ana's followers (he said "all followers + 500 %" but his example 500 followers -> 25000 likes is x50: ASK which); comments = 1/4 of likes; followers grow +20 % of the current count for a perfect photo (500 -> 600). A perfect photo is practically impossible at first.
+Where the 20 points come from:
+1. Player's Snapjob level is 5 -> 3 pts (today only levels 1-2 exist: ladder to 5 needs designing).
+2. Shot in a studio or on a photo outing (planned shoot) -> 2 pts.
+3. Ana's fitness > 80 -> 3 pts (fitness stat for Ana is not wired yet).
+4. Best camera + lighting available -> 2 pts (needs camera items/shop).
+5. Ana's pose, clothes and the photo description -> up to 8 pts, but they must FOLLOW THE SUPERNOVA TREND: the player learns it by reading comments and looking at other influencers' posts (so the Feed/comments carry trend signals; data-driven).
+6. Weekly limit: the last 2 points are reserved; they go to the first photo of the week that scores more than 16, then are frozen for another week. (3+2+3+2+8 = 18, +2 reserved = 20.)
+Still to hear from him: how points map to likes/followers below 20 (linear?), and how followers become money (earnings, 50 % share rule).
